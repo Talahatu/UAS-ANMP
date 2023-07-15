@@ -43,26 +43,6 @@
                 app:layout_constraintStart_toEndOf="@+id/imgMenuList"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/txtMenuDescList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Alamat Resto"
-                app:layout_constraintStart_toEndOf="@+id/imgMenuList"
-                app:layout_constraintTop_toBottomOf="@+id/txtMenuList" />
-
-            <TextView
-                android:id="@+id/txtMenuPriceList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="0 Review"
-                app:layout_constraintStart_toEndOf="@+id/imgMenuList"
-                app:layout_constraintTop_toBottomOf="@+id/txtMenuDescList" />
-
             <Button
                 android:id="@+id/btnRestoDetail"
                 style="@style/Widget.MaterialComponents.Button.TextButton"

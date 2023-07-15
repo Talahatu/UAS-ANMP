@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.midterm_160420014.util.MIGRATION_1_2
 
-@Database(entities = arrayOf(Users::class), version = 1)
+@Database(entities = arrayOf(Users::class,Menus::class), version = 2)
 abstract class KulinerDatabase:RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun menuDao(): MenuDao
     companion object{
         @Volatile private var instance:KulinerDatabase ?= null
         private val LOCK = Any()
@@ -16,7 +18,7 @@ abstract class KulinerDatabase:RoomDatabase() {
                 context.applicationContext,
                 KulinerDatabase::class.java,
                 "kulinerDB"
-            ).build()
+            ).addMigrations(MIGRATION_1_2).build()
         operator fun invoke(context: Context){
             if(instance!=null){
                 synchronized(LOCK){

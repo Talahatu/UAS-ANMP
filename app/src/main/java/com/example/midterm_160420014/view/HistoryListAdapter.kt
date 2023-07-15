@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midterm_160420014.model.History
-import com.example.midterm_160420014.model.Menu
+import com.example.midterm_160420014.model.Menus
 import com.example.midterm_160420014.R
 
 class HistoryListAdapter(val historyList:ArrayList<History>): RecyclerView.Adapter<HistoryListAdapter.HistoryViewHolder>()  {
     class HistoryViewHolder(var v: View):RecyclerView.ViewHolder(v)
 
-    private var menuDatas:ArrayList<Menu> = ArrayList<Menu>()
+    private var menuDatas:ArrayList<Menus> = ArrayList<Menus>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryListAdapter.HistoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.card_history_list,parent,false)
@@ -26,7 +26,7 @@ class HistoryListAdapter(val historyList:ArrayList<History>): RecyclerView.Adapt
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         holder.v.let { v->
             menuDatas.forEach {
-                if(it.id==historyList[position].menu_id){
+                if(it.uuid==historyList[position].menu_id){
                     v.findViewById<TextView>(R.id.txtMenuName).text = menuDatas[position].name
                     return@forEach
                 }
@@ -37,7 +37,7 @@ class HistoryListAdapter(val historyList:ArrayList<History>): RecyclerView.Adapt
         }
     }
 
-    fun updatehistoryList(list:ArrayList<History>,menus:ArrayList<Menu>){
+    fun updatehistoryList(list:ArrayList<History>,menus:ArrayList<Menus>){
         historyList.clear()
         historyList.addAll(list)
         menuDatas.clear()

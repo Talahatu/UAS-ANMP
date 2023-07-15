@@ -44,9 +44,7 @@ data class Restaurant(
 }
 
 @Entity()
-data class Menu(
-    @ColumnInfo("id")
-    val id:Int,
+data class Menus(
     @ColumnInfo("restaurant_id")
     val restoId:Int,
     @ColumnInfo("name")

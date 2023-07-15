@@ -10,9 +10,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midterm_160420014.model.Restaurant
 import com.example.midterm_160420014.R
+import com.example.midterm_160420014.model.Menus
 import com.squareup.picasso.Picasso
 
-class RestaurantListAdapter(val restoList:ArrayList<Restaurant>):RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder>() {
+class RestaurantListAdapter(val menuList:ArrayList<Menus>):RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder>() {
     class RestaurantViewHolder(var v: View):RecyclerView.ViewHolder(v)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
@@ -22,23 +23,22 @@ class RestaurantListAdapter(val restoList:ArrayList<Restaurant>):RecyclerView.Ad
     }
 
     override fun getItemCount(): Int {
-        return restoList.size
+        return menuList.size
     }
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         holder.v.let { v->
-            v.findViewById<TextView>(R.id.txtMenuList).text = restoList[position].name
-            v.findViewById<TextView>(R.id.txtMenuDescList).text=restoList[position].address
-            Picasso.get().load(restoList[position].link).into(v.findViewById<ImageView>(R.id.imgMenuList))
+            v.findViewById<TextView>(R.id.txtMenuList).text = menuList[position].name
+            Picasso.get().load(menuList[position].link).into(v.findViewById<ImageView>(R.id.imgMenuList))
             v.findViewById<Button>(R.id.btnRestoDetail).setOnClickListener {
-                Navigation.findNavController(it).navigate(HomeFragmentDirections.actionItemHomeToRestoDetailFragment(restoList[position].uuid))
+                Navigation.findNavController(it).navigate(HomeFragmentDirections.actionItemHomeToRestoDetailFragment(menuList[position].uuid))
             }
         }
     }
 
-    fun updateRestoList(list:ArrayList<Restaurant>){
-        restoList.clear()
-        restoList.addAll(list)
+    fun updateRestoList(list:ArrayList<Menus>){
+        menuList.clear()
+        menuList.addAll(list)
         notifyDataSetChanged()
     }
 
