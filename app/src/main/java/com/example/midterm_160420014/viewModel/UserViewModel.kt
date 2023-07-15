@@ -58,4 +58,12 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
         super.onCleared()
         queue?.cancelAll(tag)
     }
+
+    fun login(email:String,password:String){
+        launch {
+            val db = buildDB(getApplication())
+            val user:Users = db.userDao().login(email,password)
+            userData.postValue(user)
+        }
+    }
 }

@@ -15,4 +15,8 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg users: Users)
+
+    @Query("SELECT * FROM users WHERE email=:email AND password=:password")
+    fun login(email:String,password:String):Users
+
 }
