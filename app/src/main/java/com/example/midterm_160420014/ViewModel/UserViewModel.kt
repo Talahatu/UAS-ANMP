@@ -28,7 +28,7 @@ class UserViewModel(application: Application): AndroidViewModel(application)  {
                     return@forEach
                 }
             }
-        },{ Log.d("Error",it.toString())})
+        },{ Log.d("Error Error Caution!!!",it.toString())})
         req.tag=tag
         queue?.add(req)
     }
