@@ -31,7 +31,7 @@ class RestaurantListAdapter(val restoList:ArrayList<Restaurant>):RecyclerView.Ad
             v.findViewById<TextView>(R.id.txtMenuDescList).text=restoList[position].address
             Picasso.get().load(restoList[position].link).into(v.findViewById<ImageView>(R.id.imgMenuList))
             v.findViewById<Button>(R.id.btnRestoDetail).setOnClickListener {
-                Navigation.findNavController(it).navigate(HomeFragmentDirections.actionItemHomeToRestoDetailFragment(restoList[position].id))
+                Navigation.findNavController(it).navigate(HomeFragmentDirections.actionItemHomeToRestoDetailFragment(restoList[position].uuid))
             }
         }
     }

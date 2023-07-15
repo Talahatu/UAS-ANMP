@@ -22,7 +22,7 @@ class RestoDetailViewModel(application: Application): AndroidViewModel(applicati
         val req = StringRequest(Request.Method.GET,"http://10.0.2.2:8080/ANMP/resto.json",{
             val result = Gson().fromJson<ArrayList<Restaurant>>(it,object:TypeToken<ArrayList<Restaurant>>(){}.type)
             result.forEach { data->
-                if(data.id==id){
+                if(data.uuid==id){
                     restoData.value=data
                     return@forEach
                 }

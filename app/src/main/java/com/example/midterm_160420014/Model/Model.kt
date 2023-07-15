@@ -1,17 +1,23 @@
 package com.example.midterm_160420014.Model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+
+
+@Entity
 data class Users(
-    @SerializedName("id")
-    val id:String?,
     @SerializedName("name")
     val name:String?,
     @SerializedName("email")
     val email:String?,
     @SerializedName("password")
     val password:String?
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int=0
+}
 
 data class ApiResponse(
     @SerializedName("status")
@@ -20,9 +26,8 @@ data class ApiResponse(
     val message:String?,
 )
 
+@Entity()
 data class Restaurant(
-    @SerializedName("id")
-    val id:Int,
     @SerializedName("name")
     val name:String,
     @SerializedName("address")
@@ -32,7 +37,12 @@ data class Restaurant(
     @SerializedName("phone")
     val phone:String
 )
+{
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int=0
+}
 
+@Entity()
 data class Menu(
     @SerializedName("id")
     val id:Int,
@@ -47,7 +57,12 @@ data class Menu(
     @SerializedName("link")
     val link:String,
 )
+{
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int=0
+}
 
+@Entity()
 data class Review(
     @SerializedName("id")
     val id:Int,
@@ -58,7 +73,13 @@ data class Review(
     @SerializedName("comment")
     val content:String
 )
+{
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int=0
+}
 
+
+@Entity()
 data class History(
     @SerializedName("id")
     val id:Int,
@@ -73,6 +94,13 @@ data class History(
     @SerializedName("date")
     val date:String
 )
+{
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int=0
+}
+
+
+@Entity()
 data class Promo(
     @SerializedName("id")
     val id:Int,
@@ -83,3 +111,7 @@ data class Promo(
     @SerializedName("restaurant_id")
     val restaurant_id:Int
 )
+{
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int=0
+}

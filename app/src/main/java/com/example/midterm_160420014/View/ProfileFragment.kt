@@ -20,7 +20,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
         val sharedPref = requireActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
-        userVM.refresh(sharedPref.getString("id","")!!)
+//        userVM.refresh(sharedPref.getString("id","")!!)
         observe()
     }
     fun observe(){

@@ -9,21 +9,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ShareActionProvider
-import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.midterm_160420014.Model.Users
 import com.example.midterm_160420014.R
+import com.example.midterm_160420014.ViewModel.UserViewModel
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class LoginFragment : Fragment() {
+
+    private lateinit var userVM:UserViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        userVM = ViewModelProvider(this)[UserViewModel::class.java]
+        userVM.refresh()
+
+
+
+
+
+
         view.findViewById<Button>(R.id.btnRegister).setOnClickListener {
             val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             Navigation.findNavController(it).navigate(action)
@@ -42,7 +54,7 @@ class LoginFragment : Fragment() {
                         if(data.email==email && data.password==password){
                             val sharedPref = requireActivity().getSharedPreferences("UserInfo",Context.MODE_PRIVATE)
                             val editor:SharedPreferences.Editor = sharedPref.edit()
-                            editor.putString("id",data.id)
+                            editor.putString("id",data.uuid.toString())
                             editor.apply()
                             val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
                             Navigation.findNavController(it).navigate(action)
@@ -54,6 +66,7 @@ class LoginFragment : Fragment() {
             Volley.newRequestQueue(requireContext()).add(req)
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

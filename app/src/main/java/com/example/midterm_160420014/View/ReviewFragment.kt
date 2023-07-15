@@ -20,23 +20,6 @@ class ReviewFragment : Fragment() {
     private lateinit var reviewVM: ListReviewViewModel
     private lateinit var userVM: UserViewModel
     private val reviewAdapter = ReviewListAdapter(arrayListOf())
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val sharedPref = requireActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
-        val id = ReviewFragmentArgs.fromBundle(requireArguments()).id
-
-        reviewVM = ViewModelProvider(this)[ListReviewViewModel::class.java]
-        userVM = ViewModelProvider(this)[UserViewModel::class.java]
-        sharedPref.getString("id","")?.let {
-            userVM.refresh(it)
-            reviewVM.refreshData(id, it)
-        }
-
-        val recView = view.findViewById<RecyclerView>(R.id.recView)
-        recView.layoutManager= LinearLayoutManager(context)
-        recView.adapter=reviewAdapter
-        observe()
-    }
     fun observe(){
         userVM.userData.observe(viewLifecycleOwner, Observer {user->
             reviewVM.reviewList.observe(viewLifecycleOwner, Observer {
@@ -44,6 +27,23 @@ class ReviewFragment : Fragment() {
                 reviewAdapter.updatereviewList(it,user)
             })
         })
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val sharedPref = requireActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
+        val id = ReviewFragmentArgs.fromBundle(requireArguments()).id
+
+        reviewVM = ViewModelProvider(this)[ListReviewViewModel::class.java]
+        userVM = ViewModelProvider(this)[UserViewModel::class.java]
+//        sharedPref.getString("id","")?.let {
+//            userVM.refresh(it)
+//            reviewVM.refreshData(id, it)
+//        }
+
+        val recView = view.findViewById<RecyclerView>(R.id.recView)
+        recView.layoutManager= LinearLayoutManager(context)
+        recView.adapter=reviewAdapter
+        observe()
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
