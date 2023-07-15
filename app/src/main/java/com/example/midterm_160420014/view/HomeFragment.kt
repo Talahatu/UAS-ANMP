@@ -27,7 +27,7 @@ private lateinit var restoVM:ListRestoViewModel
         observe()
     }
     fun observe(){
-        restoVM.restoList.observe(viewLifecycleOwner, Observer {
+        restoVM.menuList.observe(viewLifecycleOwner, Observer {
             restaurantListAdapter.updateRestoList(it)
         })
     }

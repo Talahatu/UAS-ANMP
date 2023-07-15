@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.midterm_160420014.model.Menu
+import com.example.midterm_160420014.model.Menus
 import com.example.midterm_160420014.R
 import com.squareup.picasso.Picasso
 
-class MenuListAdapter(val menuList:ArrayList<Menu>): RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>()   {
+class MenuListAdapter(val menuList:ArrayList<Menus>): RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>()   {
     class MenuViewHolder(var v: View):RecyclerView.ViewHolder(v)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuListAdapter.MenuViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -31,7 +31,7 @@ class MenuListAdapter(val menuList:ArrayList<Menu>): RecyclerView.Adapter<MenuLi
         }
     }
 
-    fun updatemenuList(list:ArrayList<Menu>){
+    fun updatemenuList(list:ArrayList<Menus>){
         menuList.clear()
         menuList.addAll(list)
         notifyDataSetChanged()

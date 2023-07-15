@@ -8,12 +8,23 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.midterm_160420014.model.Menus
 import com.example.midterm_160420014.model.Restaurant
+import com.example.midterm_160420014.util.buildDB
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class ListRestoViewModel(application: Application):AndroidViewModel(application) {
-    val restoList = MutableLiveData<ArrayList<Restaurant>>()
+class ListRestoViewModel(application: Application):AndroidViewModel(application),CoroutineScope {
+
+    override val coroutineContext: CoroutineContext
+        get() = Job() +Dispatchers.IO
+
+    val menuList = MutableLiveData<ArrayList<Menus>>()
     val errorStatus = MutableLiveData<Boolean>()
     val loadingStatus = MutableLiveData<Boolean>()
 
@@ -23,16 +34,12 @@ class ListRestoViewModel(application: Application):AndroidViewModel(application)
     fun refreshData(){
         loadingStatus.value=true
         errorStatus.value=false
-        queue=Volley.newRequestQueue(getApplication())
-        val req = StringRequest(Request.Method.GET,"http://10.0.2.2:8080/ANMP/resto.json",{
-            val result = Gson().fromJson<ArrayList<Restaurant>>(it,object:TypeToken<ArrayList<Restaurant>>(){}.type)
-            Log.d("Test Content: ",result.toString())
-            restoList.value=result
-            errorStatus.value=false
-            loadingStatus.value=false
-        },{ Log.d("Error",it.toString())})
-        req.tag=tag
-        queue?.add(req)
+        launch {
+            val db = buildDB(getApplication())
+            val food = db.menuDao().selectAll()
+            menuList.postValue(food as ArrayList<Menus>?)
+        }
+
     }
 
 
