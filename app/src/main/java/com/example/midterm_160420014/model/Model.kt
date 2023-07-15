@@ -1,5 +1,6 @@
 package com.example.midterm_160420014.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -8,11 +9,11 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 data class Users(
-    @SerializedName("name")
+    @ColumnInfo("name")
     val name:String?,
-    @SerializedName("email")
+    @ColumnInfo("email")
     val email:String?,
-    @SerializedName("password")
+    @ColumnInfo("password")
     val password:String?
 ) {
     @PrimaryKey(autoGenerate = true)
@@ -20,21 +21,21 @@ data class Users(
 }
 
 data class ApiResponse(
-    @SerializedName("status")
+    @ColumnInfo("status")
     val status:String?,
-    @SerializedName("message")
+    @ColumnInfo("message")
     val message:String?,
 )
 
 @Entity()
 data class Restaurant(
-    @SerializedName("name")
+    @ColumnInfo("name")
     val name:String,
-    @SerializedName("address")
+    @ColumnInfo("address")
     val address:String,
-    @SerializedName("link")
+    @ColumnInfo("link")
     val link:String,
-    @SerializedName("phone")
+    @ColumnInfo("phone")
     val phone:String
 )
 {
@@ -44,17 +45,17 @@ data class Restaurant(
 
 @Entity()
 data class Menu(
-    @SerializedName("id")
+    @ColumnInfo("id")
     val id:Int,
-    @SerializedName("restaurant_id")
+    @ColumnInfo("restaurant_id")
     val restoId:Int,
-    @SerializedName("name")
+    @ColumnInfo("name")
     val name:String,
-    @SerializedName("description")
+    @ColumnInfo("description")
     val description:String,
-    @SerializedName("price")
+    @ColumnInfo("price")
     val price:Int,
-    @SerializedName("link")
+    @ColumnInfo("link")
     val link:String,
 )
 {
@@ -64,13 +65,13 @@ data class Menu(
 
 @Entity()
 data class Review(
-    @SerializedName("id")
+    @ColumnInfo("id")
     val id:Int,
-    @SerializedName("resto_id")
+    @ColumnInfo("resto_id")
     val restoId:Int,
-    @SerializedName("user_id")
+    @ColumnInfo("user_id")
     val userId:Int,
-    @SerializedName("comment")
+    @ColumnInfo("comment")
     val content:String
 )
 {
@@ -81,17 +82,17 @@ data class Review(
 
 @Entity()
 data class History(
-    @SerializedName("id")
+    @ColumnInfo("id")
     val id:Int,
-    @SerializedName("quantity")
+    @ColumnInfo("quantity")
     val qty:Int,
-    @SerializedName("notes")
+    @ColumnInfo("notes")
     val notes:String,
-    @SerializedName("user_id")
+    @ColumnInfo("user_id")
     val user_id:Int,
-    @SerializedName("menu_id")
+    @ColumnInfo("menu_id")
     val menu_id:Int,
-    @SerializedName("date")
+    @ColumnInfo("date")
     val date:String
 )
 {
@@ -102,13 +103,13 @@ data class History(
 
 @Entity()
 data class Promo(
-    @SerializedName("id")
+    @ColumnInfo("id")
     val id:Int,
-    @SerializedName("code")
+    @ColumnInfo("code")
     val code:String,
-    @SerializedName("discount")
+    @ColumnInfo("discount")
     val discount:Int,
-    @SerializedName("restaurant_id")
+    @ColumnInfo("restaurant_id")
     val restaurant_id:Int
 )
 {
