@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.android.volley.RequestQueue
 import com.example.midterm_160420014.model.KulinerDatabase
 import com.example.midterm_160420014.model.Users
+import com.example.midterm_160420014.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -55,5 +56,13 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
     override fun onCleared() {
         super.onCleared()
         queue?.cancelAll(tag)
+    }
+
+    fun login(email:String,password:String){
+        launch {
+            val db = buildDB(getApplication())
+            val user:Users = db.userDao().login(email,password)
+            userData.postValue(user)
+        }
     }
 }
