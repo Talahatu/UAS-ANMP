@@ -1,11 +1,9 @@
-package com.example.midterm_160420014.View
+package com.example.midterm_160420014.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.midterm_160420014.R
 

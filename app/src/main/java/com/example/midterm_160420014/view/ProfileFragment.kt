@@ -1,4 +1,4 @@
-package com.example.midterm_160420014.View
+package com.example.midterm_160420014.view
 
 import android.content.Context
 import android.os.Bundle
@@ -11,8 +11,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.midterm_160420014.R
-import com.example.midterm_160420014.ViewModel.ListPromoViewModel
-import com.example.midterm_160420014.ViewModel.UserViewModel
+import com.example.midterm_160420014.viewModel.UserViewModel
 
 class ProfileFragment : Fragment() {
     private lateinit var userVM:UserViewModel
@@ -20,7 +19,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
         val sharedPref = requireActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
-//        userVM.refresh(sharedPref.getString("id","")!!)
+        userVM.getUser(sharedPref.getString("id","")!!.toInt())
         observe()
     }
     fun observe(){

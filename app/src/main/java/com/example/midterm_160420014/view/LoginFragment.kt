@@ -1,4 +1,4 @@
-package com.example.midterm_160420014.View
+package com.example.midterm_160420014.view
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -9,15 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.midterm_160420014.Model.Users
+import com.example.midterm_160420014.model.Users
 import com.example.midterm_160420014.R
-import com.example.midterm_160420014.ViewModel.UserViewModel
+import com.example.midterm_160420014.viewModel.UserViewModel
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

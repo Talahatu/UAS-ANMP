@@ -1,4 +1,4 @@
-package com.example.midterm_160420014.View
+package com.example.midterm_160420014.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,11 +9,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.midterm_160420014.R
-import com.example.midterm_160420014.ViewModel.RestoDetailViewModel
+import com.example.midterm_160420014.viewModel.RestoDetailViewModel
 import com.squareup.picasso.Picasso
 
 

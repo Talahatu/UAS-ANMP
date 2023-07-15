@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/itemHome"
-        android:name="com.example.midterm_160420014.View.HomeFragment"
+        android:name="com.example.midterm_160420014.view.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,17 +16,17 @@
     </fragment>
     <fragment
         android:id="@+id/itemProfile"
-        android:name="com.example.midterm_160420014.View.ProfileFragment"
+        android:name="com.example.midterm_160420014.view.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/itemHistory"
-        android:name="com.example.midterm_160420014.View.HistoryFragment"
+        android:name="com.example.midterm_160420014.view.HistoryFragment"
         android:label="History"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/restoDetailFragment"
-        android:name="com.example.midterm_160420014.View.RestoDetailFragment"
+        android:name="com.example.midterm_160420014.view.RestoDetailFragment"
         android:label="fragment_resto_detail"
         tools:layout="@layout/fragment_resto_detail" >
         <argument
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/promoFragment"
-        android:name="com.example.midterm_160420014.View.PromoFragment"
+        android:name="com.example.midterm_160420014.view.PromoFragment"
         android:label="fragment_promo"
         tools:layout="@layout/fragment_promo" >
         <argument
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.example.midterm_160420014.View.MenuFragment"
+        android:name="com.example.midterm_160420014.view.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <argument
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/reviewFragment"
-        android:name="com.example.midterm_160420014.View.ReviewFragment"
+        android:name="com.example.midterm_160420014.view.ReviewFragment"
         android:label="fragment_review"
         tools:layout="@layout/fragment_review" >
         <argument

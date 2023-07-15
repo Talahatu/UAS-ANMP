@@ -1,4 +1,4 @@
-package com.example.midterm_160420014.View
+package com.example.midterm_160420014.view
 
 import android.content.Context
 import android.os.Bundle
@@ -11,10 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.midterm_160420014.Model.Users
 import com.example.midterm_160420014.R
-import com.example.midterm_160420014.ViewModel.ListReviewViewModel
-import com.example.midterm_160420014.ViewModel.UserViewModel
+import com.example.midterm_160420014.viewModel.ListReviewViewModel
+import com.example.midterm_160420014.viewModel.UserViewModel
 
 class ReviewFragment : Fragment() {
     private lateinit var reviewVM: ListReviewViewModel

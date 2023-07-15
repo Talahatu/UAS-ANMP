@@ -1,4 +1,4 @@
-package com.example.midterm_160420014.View
+package com.example.midterm_160420014.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,34 +10,33 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midterm_160420014.R
-import com.example.midterm_160420014.ViewModel.ListRestoViewModel
+import com.example.midterm_160420014.viewModel.ListPromoViewModel
 
-class HomeFragment : Fragment() {
-private lateinit var restoVM:ListRestoViewModel
-    private val restaurantListAdapter=RestaurantListAdapter(arrayListOf())
+class PromoFragment : Fragment() {
+    private lateinit var promoVM:ListPromoViewModel
+    private val promoAdapter = PromoListAdapter(arrayListOf())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        restoVM = ViewModelProvider(this).get(ListRestoViewModel::class.java)
-        restoVM.refreshData()
+        val id = PromoFragmentArgs.fromBundle(requireArguments()).id
+        promoVM = ViewModelProvider(this)[ListPromoViewModel::class.java]
+        promoVM.refreshData(id)
 
         val recView = view.findViewById<RecyclerView>(R.id.recView)
-        recView.layoutManager=LinearLayoutManager(context)
-        recView.adapter=restaurantListAdapter
+        recView.layoutManager= LinearLayoutManager(context)
+        recView.adapter=promoAdapter
         observe()
     }
+
     fun observe(){
-        restoVM.restoList.observe(viewLifecycleOwner, Observer {
-            restaurantListAdapter.updateRestoList(it)
+        promoVM.promoList.observe(viewLifecycleOwner, Observer {
+            promoAdapter.updatepromoList(it)
         })
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_promo, container, false)
     }
-
 }

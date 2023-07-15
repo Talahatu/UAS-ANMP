@@ -1,11 +1,11 @@
-package com.example.midterm_160420014.View
+package com.example.midterm_160420014.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.midterm_160420014.Model.Promo
+import com.example.midterm_160420014.model.Promo
 import com.example.midterm_160420014.R
 
 class PromoListAdapter(val promoList:ArrayList<Promo>): RecyclerView.Adapter<PromoListAdapter.PromoViewHolder>()  {

@@ -1,14 +1,13 @@
-package com.example.midterm_160420014.View
+package com.example.midterm_160420014.view
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.example.midterm_160420014.Model.Review
-import com.example.midterm_160420014.Model.Users
+import com.example.midterm_160420014.model.Review
+import com.example.midterm_160420014.model.Users
 import com.example.midterm_160420014.R
 
 class ReviewListAdapter(val reviewList:ArrayList<Review> ): RecyclerView.Adapter<ReviewListAdapter.ReviewViewHolder>() {

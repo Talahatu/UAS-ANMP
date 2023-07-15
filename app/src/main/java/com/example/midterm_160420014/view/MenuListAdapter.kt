@@ -1,14 +1,12 @@
-package com.example.midterm_160420014.View
+package com.example.midterm_160420014.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.midterm_160420014.Model.Menu
+import com.example.midterm_160420014.model.Menu
 import com.example.midterm_160420014.R
 import com.squareup.picasso.Picasso
 
