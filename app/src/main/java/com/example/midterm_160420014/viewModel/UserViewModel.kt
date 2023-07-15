@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.android.volley.RequestQueue
 import com.example.midterm_160420014.model.KulinerDatabase
 import com.example.midterm_160420014.model.Users
+import com.example.midterm_160420014.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -25,7 +26,8 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
 
     fun getUser(uuid:Int){
         launch {
-//            val db =
+            val db = buildDB(getApplication())
+            db.userDao().selectById(uuid)
         }
     }
     fun refresh(){

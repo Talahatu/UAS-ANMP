@@ -24,10 +24,7 @@ class ProfileFragment : Fragment() {
     }
     fun observe(){
         userVM.userData.observe(viewLifecycleOwner, Observer {
-            Log.d("User: ",it.toString())
-            view?.findViewById<TextView>(R.id.txtName)?.text=it.name
-            view?.findViewById<TextView>(R.id.txtEmail)?.text=it.email
-            view?.findViewById<TextView>(R.id.txtPassword)?.text=it.password
+            
 
         })
     }
