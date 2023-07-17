@@ -3,6 +3,7 @@ package com.example.midterm_160420014.view
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,11 +25,15 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
-        userVM.refresh()
-        view.findViewById<Button>(R.id.btnRegister).setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+        val userlogged:SharedPreferences=requireActivity().getSharedPreferences("UserLogin",Context.MODE_PRIVATE)
+        if(userlogged.contains("uuid")){
+            val action= LoginFragmentDirections.actionLoginFragmentToMainFragment()
+            Navigation.findNavController(view).navigate(action)
+        }
+        val btnregis = view.findViewById<Button>(R.id.btnRegister)
+        btnregis.setOnClickListener{
+            val action= LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             Navigation.findNavController(it).navigate(action)
         }
         val button = view.findViewById<Button>(R.id.btnLogin)

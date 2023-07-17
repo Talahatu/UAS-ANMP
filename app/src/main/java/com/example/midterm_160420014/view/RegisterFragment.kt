@@ -1,50 +1,41 @@
 package com.example.midterm_160420014.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.midterm_160420014.R
+import com.example.midterm_160420014.viewModel.UserViewModel
+import com.google.android.material.textfield.TextInputEditText
 
 class RegisterFragment : Fragment() {
+    private lateinit var userVM: UserViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        view.findViewById<Button>(R.id.btnSubmitRegister).setOnClickListener {
-//            val name = view.findViewById<TextInputEditText>(R.id.nameEditTextRegis).text.toString()
-//            val email = view.findViewById<TextInputEditText>(R.id.emailEditTextRegis).text.toString()
-//            val pass = view.findViewById<TextInputEditText>(R.id.passwordEditTextRegis).text.toString()
-//            val rePass = view.findViewById<TextInputEditText>(R.id.rePassEditTextRegis).text.toString()
-//            if(pass == rePass){
-//                var req:StringRequest = object:StringRequest(
-//                    Request.Method.POST,
-//                    "http://10.0.2.2:8080/ANMP/register.php",
-//                    {response->
-//                        var result = Gson().fromJson(response,ApiResponse::class.java)
-//                        if(result.status.toString()=="Success"){
-//                            findNavController().popBackStack()
-//                        }
-//                        else{
-//                            Toast.makeText(requireContext(),"User already registered!",Toast.LENGTH_SHORT).show()
-//                        }
-//                    },{error->
-//                        Log.d("Error: ",error.toString())
-//                    })
-//                {
-//                    override fun getParams(): MutableMap<String, String>? {
-//                        val params:MutableMap<String,String> = HashMap()
-//                        params["name"] = name
-//                        params["email"] = email
-//                        params["password"] = pass
-//                        return params
-//                    }
-//                }
-//                Volley.newRequestQueue(requireContext()).add(req)
-//            }
-//            else{
-//                Toast.makeText(requireContext(),"Password not matched with Retype password!",Toast.LENGTH_SHORT).show();
-//            }
-//        }
+        userVM= ViewModelProvider(this)[UserViewModel::class.java]
+        val btnRegister = view.findViewById<Button>(R.id.btnSubmitRegister)
+        btnRegister.setOnClickListener{
+            var username = view.findViewById<TextInputEditText>(R.id.nameEditTextRegis).text.toString();
+            var email = view.findViewById<TextInputEditText>(R.id.emailEditTextRegis).text.toString();
+            var password = view.findViewById<TextInputEditText>(R.id.passwordEditTextRegis).text.toString();
+            var repassword = view.findViewById<TextInputEditText>(R.id.rePassEditTextRegis).text.toString();
+            if(password==repassword){
+                userVM.register(username,email,password)
+                val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                Navigation.findNavController(it).navigate(action)
+                Toast.makeText(it.context,"Register complete", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(it.context,"Password doesn't match", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
