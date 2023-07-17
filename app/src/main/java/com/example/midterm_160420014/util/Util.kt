@@ -13,11 +13,13 @@ val MIGRATION_1_2 = object : Migration(1,2){
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL(
             "CREATE TABLE menus " +
-                    "('restaurant_id' INTEGER, " +
-                    "'name' TEXT, " +
-                    "'description' TEXT, " +
-                    "'price' INTEGER, " +
-                    "'link' TEXT)")
+                    "('restaurant_id' INTEGER NOT NULL, " +
+                    "'name' TEXT NOT NULL, " +
+                    "'description' TEXT NOT NULL, " +
+                    "'price' INTEGER NOT NULL, " +
+                    "'link' TEXT NOT NULL," +
+                    "'uuid' INTEGER NOT NULL," +
+                    "PRIMARY KEY('uuid'))")
     }
 }
 val MIGRATION_2_3 = object : Migration(2,3){

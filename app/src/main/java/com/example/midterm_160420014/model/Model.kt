@@ -10,11 +10,11 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class Users(
     @ColumnInfo("name")
-    val name:String?,
+    var name:String?,
     @ColumnInfo("email")
-    val email:String?,
+    var email:String?,
     @ColumnInfo("password")
-    val password:String?
+    var password:String?
 ) {
     @PrimaryKey(autoGenerate = true)
     var uuid:Int=0
