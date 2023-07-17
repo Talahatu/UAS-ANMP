@@ -1,6 +1,7 @@
 package com.example.midterm_160420014.util
 
 import android.content.Context
+import androidx.navigation.NavController
 import androidx.room.ColumnInfo
 import androidx.room.Room
 import androidx.room.migration.Migration
@@ -8,6 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.midterm_160420014.model.KulinerDatabase
 
 const val DB_NAME = "kulinerDB"
+
 
 val MIGRATION_1_2 = object : Migration(1,2){
     override fun migrate(database: SupportSQLiteDatabase) {

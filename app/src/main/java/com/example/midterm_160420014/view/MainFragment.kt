@@ -1,18 +1,24 @@
 package com.example.midterm_160420014.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.midterm_160420014.R
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -24,6 +30,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navControler = (childFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment).navController
         view?.findViewById<BottomNavigationView>(R.id.bottomNav)?.setupWithNavController(navControler)
+
 
         drawerLayout = view.findViewById(R.id.drawerLayout)
         val appBarConfig = AppBarConfiguration(
@@ -38,6 +45,7 @@ class MainFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,17 +1,24 @@
 package com.example.midterm_160420014.view
 
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavAction
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.databinding.FragmentProfileBinding
 import com.example.midterm_160420014.viewModel.UserViewModel
@@ -21,11 +28,22 @@ class ProfileFragment : Fragment(), ProfileOnClickListener {
     private lateinit var dataBinding:FragmentProfileBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
         val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
         userVM.getUser(sharedPref.getString("uuid","")!!.toInt())
         dataBinding.profileListener=this
         observe()
+
+
+
+        val btnlogout=view.findViewById<Button>(R.id.buttonLogout)
+        btnlogout.setOnClickListener{
+            val editor:SharedPreferences.Editor=sharedPref.edit()
+            editor.clear()
+            editor.apply()
+
+        }
     }
     private fun observe(){
         userVM.userData.observe(viewLifecycleOwner, Observer {

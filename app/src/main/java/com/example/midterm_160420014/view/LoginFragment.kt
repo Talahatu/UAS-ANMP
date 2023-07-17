@@ -13,7 +13,9 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.midterm_160420014.R
+
 import com.example.midterm_160420014.viewModel.UserViewModel
 import com.google.android.material.textfield.TextInputEditText
 
@@ -25,6 +27,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
         val userlogged:SharedPreferences=requireActivity().getSharedPreferences("UserLogin",Context.MODE_PRIVATE)
         if(userlogged.contains("uuid")){
