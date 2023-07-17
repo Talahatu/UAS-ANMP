@@ -8,28 +8,41 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.midterm_160420014.model.Restaurant
+import com.example.midterm_160420014.model.Menus
+import com.example.midterm_160420014.model.Restaurants
+import com.example.midterm_160420014.util.buildDB
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class RestoDetailViewModel(application: Application): AndroidViewModel(application) {
-    val restoData= MutableLiveData<Restaurant>()
-    var queue: RequestQueue?=null
+class RestoDetailViewModel(application: Application): AndroidViewModel(application),
+    CoroutineScope {
+    override val coroutineContext: CoroutineContext
+        get() = Job() + Dispatchers.IO
+
+    val menuList = MutableLiveData<Menus>()
+    val restoList = MutableLiveData<Restaurants>()
+    val errorStatus = MutableLiveData<Boolean>()
+    val loadingStatus = MutableLiveData<Boolean>()
 
     val tag="abc"
+    var queue:RequestQueue?=null
+
     fun refresh(id:Int){
-        queue= Volley.newRequestQueue(getApplication())
-        val req = StringRequest(Request.Method.GET,"http://10.0.2.2:8080/ANMP/resto.json",{
-            val result = Gson().fromJson<ArrayList<Restaurant>>(it,object:TypeToken<ArrayList<Restaurant>>(){}.type)
-            result.forEach { data->
-                if(data.uuid==id){
-                    restoData.value=data
-                    return@forEach
-                }
-            }
-        },{ Log.d("Error",it.toString())})
-        req.tag=tag
-        queue?.add(req)
+        loadingStatus.value=true
+        errorStatus.value=false
+        launch {
+            val db = buildDB(getApplication())
+            val food = db.menuDao().selectById(id)
+            val resto = db.restaurantDao().selectById(food.restoId)
+
+            menuList.postValue(food)
+            restoList.postValue(resto)
+        }
     }
 
 
