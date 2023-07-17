@@ -66,4 +66,10 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
             userData.postValue(user)
         }
     }
+    fun register(regisname:String,regisemail:String,regispassword:String){
+        launch {
+            val db= buildDB(getApplication())
+            val status=db.userDao().insert(Users(regisname,regisemail,regispassword))
+        }
+    }
 }
