@@ -76,14 +76,12 @@ data class Review(
 }
 
 
-@Entity()
+@Entity("histories")
 data class History(
-    @ColumnInfo("id")
-    val id:Int,
     @ColumnInfo("quantity")
     val qty:Int,
-    @ColumnInfo("notes")
-    val notes:String,
+    @ColumnInfo("subtotal")
+    val subtotal:Int,
     @ColumnInfo("user_id")
     val user_id:Int,
     @ColumnInfo("menu_id")

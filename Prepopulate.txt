@@ -10,11 +10,11 @@ VALUES( 1,	"Nasi Goreng", "Nasi goreng adalah hidangan nasi yang digoreng dengan
 ,( 3,	"Gado-gado", "Gado-gado adalah hidangan sayur-sayuran rebus seperti kacang panjang, taoge, kangkung, dan tahu yang disajikan dengan bumbu kacang kental. Biasanya ditambahkan dengan kerupuk dan telur rebus.", 15000, "https://asset-2.tstatic.net/batam/foto/bank/images/gado-gado_20170718_113047.jpg")
 ,( 4,	"Rendang", "Rendang adalah masakan daging sapi yang dimasak dalam rempah-rempah kaya dan santan kelapa. Rendang memiliki rasa pedas, gurih, dan lezat. Dagingnya empuk dan beraroma kaya.", 30000, "https://images.tokopedia.net/img/KRMmCm/2022/8/9/51584c5e-2713-4895-88d5-30b677255ffd.jpg")
 ,( 5,	"Soto Ayam", "Soto ayam adalah sup ayam dengan kuah kaldu yang gurih. Biasanya disajikan dengan irisan daging ayam, mie, telur rebus, dan bawang goreng.", 25000, "https://assets.pikiran-rakyat.com/crop/0x508:821x1011/x/photo/2022/04/26/2747824482.jpg")
-,( 6,	"Martabak Manis", "Martabak manis adalah adonan tepung terigu yang digoreng dan diisi dengan cokelat, keju, atau kacang. Martabak manis memiliki rasa manis dan lezat.", 25000, "https://asset.kompas.com/crops/ECg5EWKFbhg6tjt5VNZCEupy_24=/0x0:1000x667/750x500/data/photo/2020/08/22/5f40bfe4e8c16.jpg")
-,( 7,	"Bakso", "Bakso adalah bola daging yang terbuat dari campuran daging sapi giling yang kenyal dan lezat. Biasanya disajikan dalam kuah kaldu dengan mie, tahu, dan pangsit.", 15000, "https://st2.depositphotos.com/1354142/9736/i/950/depositphotos_97361778-stock-photo-bakso-indonesian-meatball-soup-with.jpg")
-,( 8,	"Soto Betawi", "Soto Betawi adalah hidangan sup dengan kuah santan yang kaya rasa. Biasanya berisi daging sapi, jeroan sapi, dan sayuran seperti kentang dan tomat.", 25000, "https://www.unileverfoodsolutions.co.id/dam/global-ufs/mcos/SEA/calcmenu/recipes/ID-recipes/soups/soto-betawi/main-header.jpg")
-,( 9,	"Dim Sum Tiongkok", "Dim Sum adalah hidangan Tiongkok yang terdiri dari berbagai macam makanan kecil seperti pangsit, siomay, hakau, dan bakpao yang biasanya disajikan dalam keranjang. Dim Sum sering dinikmati sebagai makanan ringan atau sarapan.", 30000, "https://asset.kompas.com/crops/DEDxeclyBPPZ2miRZhxGFJxhHU0=/0x175:800x708/750x500/data/photo/2021/01/18/60053789dc100.jpg")
-,( 10, "Steak Argentina", "Steak Argentina terkenal karena kualitas daging sapi premiumnya. Biasanya disajikan dengan cara panggang atau grill, steak Argentina memiliki cita rasa yang kaya dan empuk.", 50000, "https://img.freepik.com/free-photo/grilled-beef-steak-dark-wooden-surface_1150-44344.jpg");  
+,( 1,	"Martabak Manis", "Martabak manis adalah adonan tepung terigu yang digoreng dan diisi dengan cokelat, keju, atau kacang. Martabak manis memiliki rasa manis dan lezat.", 25000, "https://asset.kompas.com/crops/ECg5EWKFbhg6tjt5VNZCEupy_24=/0x0:1000x667/750x500/data/photo/2020/08/22/5f40bfe4e8c16.jpg")
+,( 2,	"Bakso", "Bakso adalah bola daging yang terbuat dari campuran daging sapi giling yang kenyal dan lezat. Biasanya disajikan dalam kuah kaldu dengan mie, tahu, dan pangsit.", 15000, "https://st2.depositphotos.com/1354142/9736/i/950/depositphotos_97361778-stock-photo-bakso-indonesian-meatball-soup-with.jpg")
+,( 3,	"Soto Betawi", "Soto Betawi adalah hidangan sup dengan kuah santan yang kaya rasa. Biasanya berisi daging sapi, jeroan sapi, dan sayuran seperti kentang dan tomat.", 25000, "https://www.unileverfoodsolutions.co.id/dam/global-ufs/mcos/SEA/calcmenu/recipes/ID-recipes/soups/soto-betawi/main-header.jpg")
+,( 4,	"Dim Sum Tiongkok", "Dim Sum adalah hidangan Tiongkok yang terdiri dari berbagai macam makanan kecil seperti pangsit, siomay, hakau, dan bakpao yang biasanya disajikan dalam keranjang. Dim Sum sering dinikmati sebagai makanan ringan atau sarapan.", 30000, "https://asset.kompas.com/crops/DEDxeclyBPPZ2miRZhxGFJxhHU0=/0x175:800x708/750x500/data/photo/2021/01/18/60053789dc100.jpg")
+,( 5, "Steak Argentina", "Steak Argentina terkenal karena kualitas daging sapi premiumnya. Biasanya disajikan dengan cara panggang atau grill, steak Argentina memiliki cita rasa yang kaya dan empuk.", 50000, "https://img.freepik.com/free-photo/grilled-beef-steak-dark-wooden-surface_1150-44344.jpg");  
 
 ## Restaurant  
 INSERT INTO restaurants (name, address, phone)
@@ -23,3 +23,11 @@ VALUES( "Warung Pak Kris", "Kantin PF Stan 1", "089098987678")
 ,( "Depot Pak Rudy", "Kantin PF Stan 3", "085678765456")
 ,( "RM Padang Sederhana", "Kantin PF Stan 4", "083456788909")
 ,( "Soto Ayam Lamongan Bu Murdy", "Kantin PF Stan 5", "081234543234");  
+
+
+## History
+INSERT INTO histories(quantity, notes, user_id, menu_id, date)
+VALUES (4, "Done", 1, 1, "2023-02-07")
+,(3, "Done", 1, 2, "2023-02-07")
+,(6, "Done", 1, 4, "2023-02-07")
+,(2, "Done", 1, 8, "2023-02-07");
