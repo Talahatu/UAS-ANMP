@@ -8,12 +8,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.android.volley.RequestQueue
 import com.example.midterm_160420014.R
+import com.example.midterm_160420014.model.Menus
+import com.example.midterm_160420014.model.Restaurants
+import com.example.midterm_160420014.util.buildDB
 import com.example.midterm_160420014.viewModel.RestoDetailViewModel
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 
 class RestoDetailFragment : Fragment() {
@@ -32,11 +42,12 @@ class RestoDetailFragment : Fragment() {
         val id = RestoDetailFragmentArgs.fromBundle(requireArguments()).id
         restoVM = ViewModelProvider(this)[RestoDetailViewModel::class.java]
         restoVM.refresh(id)
+
         observe()
         view.findViewById<Button>(R.id.btnPromoDetail).setOnClickListener {
             Navigation.findNavController(it).navigate(RestoDetailFragmentDirections.actionRestoDetailFragmentToPromoFragment(id))
         }
-        view.findViewById<Button>(R.id.btnListMenu).setOnClickListener {
+        view.findViewById<Button>(R.id.btnBuy).setOnClickListener {
             Navigation.findNavController(it).navigate(RestoDetailFragmentDirections.actionRestoDetailFragmentToMenuFragment(id))
         }
         view.findViewById<Button>(R.id.btnReview).setOnClickListener {
@@ -45,11 +56,17 @@ class RestoDetailFragment : Fragment() {
     }
 
     fun observe(){
-        restoVM.restoData.observe(viewLifecycleOwner, Observer {
-            view?.findViewById<TextView>(R.id.txtNamaDetail)?.text = it.name
-            view?.findViewById<TextView>(R.id.txtAddressDetail)?.text = it.address
-            view?.findViewById<TextView>(R.id.txtPhoneDetail)?.text = it.phone
-            Picasso.get().load(it.link).into(view?.findViewById<ImageView>(R.id.imgRestoDetail))
+        restoVM.menuList.observe(viewLifecycleOwner, Observer {
+            restoVM.restoList.observe(viewLifecycleOwner,Observer{
+                resto->
+                view?.findViewById<TextView>(R.id.txtNamaDetail)?.text = it.name
+                view?.findViewById<TextView>(R.id.txtPriceDetail)?.text = "Rp" + it.price.toString()
+                view?.findViewById<TextView>(R.id.txtResto)?.text = resto.name
+                Picasso.get().load(it.link).into(view?.findViewById<ImageView>(R.id.imgRestoDetail))
+            })
+
         })
     }
+
+
 }

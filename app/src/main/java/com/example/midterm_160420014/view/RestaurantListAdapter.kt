@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.midterm_160420014.model.Restaurant
+import com.example.midterm_160420014.model.Restaurants
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.model.Menus
 import com.squareup.picasso.Picasso

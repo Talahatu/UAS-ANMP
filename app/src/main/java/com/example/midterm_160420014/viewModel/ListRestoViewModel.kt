@@ -9,7 +9,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.midterm_160420014.model.Menus
-import com.example.midterm_160420014.model.Restaurant
+import com.example.midterm_160420014.model.Restaurants
 import com.example.midterm_160420014.util.buildDB
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -19,7 +19,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class ListRestoViewModel(application: Application):AndroidViewModel(application),CoroutineScope {
+class ListRestoViewModel(application: Application):AndroidViewModel(application), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Job() +Dispatchers.IO

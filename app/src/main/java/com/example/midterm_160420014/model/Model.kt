@@ -28,13 +28,11 @@ data class ApiResponse(
 )
 
 @Entity()
-data class Restaurant(
+data class Restaurants(
     @ColumnInfo("name")
     val name:String,
     @ColumnInfo("address")
     val address:String,
-    @ColumnInfo("link")
-    val link:String,
     @ColumnInfo("phone")
     val phone:String
 )

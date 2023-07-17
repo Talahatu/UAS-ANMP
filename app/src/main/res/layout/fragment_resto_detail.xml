@@ -16,22 +16,22 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
             android:text="See Promo"
             app:layout_constraintBottom_toTopOf="@+id/btnReview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/btnListMenu"
+            android:id="@+id/btnBuy"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="72dp"
-            android:text="See Menu"
+            android:layout_marginBottom="32dp"
+            android:text="Buy"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
@@ -52,8 +52,9 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:text="Review"
-            app:layout_constraintBottom_toTopOf="@+id/btnListMenu"
+            app:layout_constraintBottom_toTopOf="@+id/btnBuy"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -69,7 +70,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/txtAddressDetail"
+            android:id="@+id/txtPriceDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -80,15 +81,16 @@
             app:layout_constraintTop_toBottomOf="@+id/imgRestoDetail" />
 
         <TextView
-            android:id="@+id/txtPhoneDetail"
+            android:id="@+id/txtResto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="081259321234"
+            android:text="restoName"
             android:textSize="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnPromoDetail"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtAddressDetail" />
+            app:layout_constraintTop_toBottomOf="@+id/txtPriceDetail"
+            app:layout_constraintVertical_bias="0.144" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
