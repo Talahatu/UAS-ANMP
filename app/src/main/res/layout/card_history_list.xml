@@ -36,11 +36,21 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:text="Rp."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:text="pcs"
                 app:layout_constraintStart_toEndOf="@+id/txtQuantity"
                 app:layout_constraintTop_toBottomOf="@+id/txtMenuName" />
@@ -67,13 +77,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtMenuName" />
 
             <TextView
-                android:id="@+id/txtNotes"
+                android:id="@+id/txtSubtotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:text="@{String.valueOf(history.subtotal)}"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/txtQuantity" />
 
             <TextView
