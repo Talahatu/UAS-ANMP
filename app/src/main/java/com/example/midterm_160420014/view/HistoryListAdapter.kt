@@ -1,22 +1,24 @@
 package com.example.midterm_160420014.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midterm_160420014.model.History
 import com.example.midterm_160420014.model.Menus
 import com.example.midterm_160420014.R
+import com.example.midterm_160420014.databinding.CardHistoryListBinding
 
-class HistoryListAdapter(val historyList:ArrayList<History>): RecyclerView.Adapter<HistoryListAdapter.HistoryViewHolder>()  {
-    class HistoryViewHolder(var v: View):RecyclerView.ViewHolder(v)
+class HistoryListAdapter(private var historyList:ArrayList<History>): RecyclerView.Adapter<HistoryListAdapter.HistoryViewHolder>()  {
+    class HistoryViewHolder(var v: CardHistoryListBinding):RecyclerView.ViewHolder(v.root)
 
     private var menuDatas:ArrayList<Menus> = ArrayList<Menus>()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryListAdapter.HistoryViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.card_history_list,parent,false)
-        return HistoryListAdapter.HistoryViewHolder(view)
+        val view = DataBindingUtil.inflate<CardHistoryListBinding>(inflater,R.layout.card_history_list,parent,false)
+        return HistoryViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -24,17 +26,14 @@ class HistoryListAdapter(val historyList:ArrayList<History>): RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.v.let { v->
-            menuDatas.forEach {
-                if(it.uuid==historyList[position].menu_id){
-                    v.findViewById<TextView>(R.id.txtMenuName).text = menuDatas[position].name
+            menuDatas.forEach {menu->
+                if(menu.uuid==historyList[position].menu_id){
+                    holder.v.menu = menuDatas[position]
                     return@forEach
                 }
             }
-            v.findViewById<TextView>(R.id.txtNotes).text = historyList[position].notes
-            v.findViewById<TextView>(R.id.txtQuantity).text = historyList[position].qty.toString()+" pcs"
-            v.findViewById<TextView>(R.id.txtDate).text = historyList[position].date
-        }
+            holder.v.history = historyList[position]
+
     }
 
     fun updatehistoryList(list:ArrayList<History>,menus:ArrayList<Menus>){

@@ -14,7 +14,12 @@ data class Users(
     @ColumnInfo("email")
     var email:String?,
     @ColumnInfo("password")
-    var password:String?
+    var password:String?,
+    @ColumnInfo("saldo")
+    var saldo:Int?,
+    @ColumnInfo("alamat")
+    var alamat:String?
+
 ) {
     @PrimaryKey(autoGenerate = true)
     var uuid:Int=0
@@ -76,14 +81,12 @@ data class Review(
 }
 
 
-@Entity()
+@Entity("histories")
 data class History(
-    @ColumnInfo("id")
-    val id:Int,
     @ColumnInfo("quantity")
     val qty:Int,
-    @ColumnInfo("notes")
-    val notes:String,
+    @ColumnInfo("subtotal")
+    val subtotal:Int,
     @ColumnInfo("user_id")
     val user_id:Int,
     @ColumnInfo("menu_id")
