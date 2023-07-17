@@ -1,6 +1,7 @@
 package com.example.midterm_160420014.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.viewModel.UserViewModel
+import com.google.android.material.textfield.TextInputEditText
 
 class RegisterFragment : Fragment() {
     private lateinit var userVM: UserViewModel
@@ -18,11 +20,11 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         userVM= ViewModelProvider(this)[UserViewModel::class.java]
         val btnRegister = view.findViewById<Button>(R.id.btnSubmitRegister)
-        var username = view.findViewById<EditText>(R.id.nameEditTextRegis).text.toString();
-        var email = view.findViewById<EditText>(R.id.emailEditTextRegis).text.toString();
-        var password = view.findViewById<EditText>(R.id.passwordEditTextRegis).text.toString();
-        var repassword = view.findViewById<EditText>(R.id.rePassEditTextRegis).text.toString();
         btnRegister.setOnClickListener{
+            var username = view.findViewById<TextInputEditText>(R.id.nameEditTextRegis).text.toString();
+            var email = view.findViewById<TextInputEditText>(R.id.emailEditTextRegis).text.toString();
+            var password = view.findViewById<TextInputEditText>(R.id.passwordEditTextRegis).text.toString();
+            var repassword = view.findViewById<TextInputEditText>(R.id.rePassEditTextRegis).text.toString();
             if(password==repassword){
                 userVM.register(username,email,password)
             }
