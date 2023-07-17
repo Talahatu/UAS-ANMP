@@ -1,7 +1,7 @@
 ## Users  
-INSERT INTO users (name,email,password) VALUES ("Ken","ken@gmail.com","ken")
-,("Mario","mario@gmail.com","mario")
-,("Snake","snake@gmail.com","snake");  
+INSERT INTO users (name,email,password,saldo,alamat) VALUES ("Ken","ken@gmail.com","ken",0,"Jalan Rungkut")
+,("Mario","mario@gmail.com","mario",0,"Jalan Medokan")
+,("Snake","snake@gmail.com","snake",0,"Jalan Busa");  
 
 ## Menus  
 INSERT INTO menus (restaurant_id, name, description, price, link)

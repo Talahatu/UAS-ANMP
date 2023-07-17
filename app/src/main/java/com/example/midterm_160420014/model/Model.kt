@@ -14,7 +14,12 @@ data class Users(
     @ColumnInfo("email")
     var email:String?,
     @ColumnInfo("password")
-    var password:String?
+    var password:String?,
+    @ColumnInfo("saldo")
+    var saldo:Int?,
+    @ColumnInfo("alamat")
+    var alamat:String?
+
 ) {
     @PrimaryKey(autoGenerate = true)
     var uuid:Int=0

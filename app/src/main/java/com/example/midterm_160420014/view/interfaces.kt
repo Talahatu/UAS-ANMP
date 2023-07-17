@@ -9,3 +9,7 @@ interface ProfileOnClickListener{
 interface EditProfileListener{
     fun onEditProfileClick(v:View, user:Users)
 }
+
+interface TopUpListener{
+
+}
