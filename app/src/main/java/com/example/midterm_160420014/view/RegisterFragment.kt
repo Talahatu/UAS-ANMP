@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.viewModel.UserViewModel
 
@@ -15,6 +16,7 @@ class RegisterFragment : Fragment() {
     private lateinit var userVM: UserViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userVM= ViewModelProvider(this)[UserViewModel::class.java]
         val btnRegister = view.findViewById<Button>(R.id.btnSubmitRegister)
         var username = view.findViewById<EditText>(R.id.nameEditTextRegis).text.toString();
         var email = view.findViewById<EditText>(R.id.emailEditTextRegis).text.toString();
