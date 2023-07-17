@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.viewModel.UserViewModel
 import com.google.android.material.textfield.TextInputEditText
@@ -27,6 +28,9 @@ class RegisterFragment : Fragment() {
             var repassword = view.findViewById<TextInputEditText>(R.id.rePassEditTextRegis).text.toString();
             if(password==repassword){
                 userVM.register(username,email,password)
+                val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                Navigation.findNavController(it).navigate(action)
+                Toast.makeText(it.context,"Register complete", Toast.LENGTH_SHORT).show()
             }
             else{
                 Toast.makeText(it.context,"Password doesn't match", Toast.LENGTH_SHORT).show()
