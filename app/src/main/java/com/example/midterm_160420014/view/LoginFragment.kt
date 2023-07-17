@@ -26,7 +26,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
-        userVM.refresh()
         val btnregis = view.findViewById<Button>(R.id.btnRegister)
         btnregis.setOnClickListener{
             val action= LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
