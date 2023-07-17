@@ -31,6 +31,11 @@ class LoginFragment : Fragment() {
             val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             Navigation.findNavController(it).navigate(action)
         }
+        val btnregis = view.findViewById<Button>(R.id.btnRegister)
+        btnregis.setOnClickListener{
+            val action= LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
         val button = view.findViewById<Button>(R.id.btnLogin)
         button.setOnClickListener {
             val email = view.findViewById<TextInputEditText>(R.id.emailEditTextLogin).text.toString()
