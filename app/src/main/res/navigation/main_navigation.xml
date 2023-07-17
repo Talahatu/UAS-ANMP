@@ -24,7 +24,9 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_core_navigation"
-            app:destination="@id/core_navigation" />
+            app:destination="@id/core_navigation"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <include app:graph="@navigation/core_navigation" />
     <fragment

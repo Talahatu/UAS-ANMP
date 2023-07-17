@@ -16,7 +16,8 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class UserViewModel(application: Application): AndroidViewModel(application), CoroutineScope  {
-    val userData= MutableLiveData<Users>()
+    val userData= MutableLiveData<Users?>()
+    val status = MutableLiveData<Boolean>()
     val updateStatus = MutableLiveData<Boolean>()
     var queue: RequestQueue?=null
 
@@ -56,7 +57,11 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
 
     override fun onCleared() {
         super.onCleared()
-        queue?.cancelAll(tag)
+        userData.value=null
+    }
+    fun clearData(){
+        userData.value=null
+        Log.d("USERDATA: ",userData.value.toString())
     }
 
     fun login(email:String,password:String){

@@ -16,6 +16,16 @@ class MainActivity : AppCompatActivity() {
         var id = userLogin.getString("uuid","Data not found");
     }
 
+    override fun onBackPressed() {
+        val curFrag = findNavController(R.id.fragment_host).currentDestination?.label.toString()
+        if(curFrag=="fragment_login"){
+            return
+        }
+        else{
+            return super.onBackPressed()
+        }
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.hostFragment)
         val drawerLayout = this.findViewById<DrawerLayout>(R.id.drawerLayout)
