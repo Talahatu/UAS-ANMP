@@ -27,10 +27,6 @@ class LoginFragment : Fragment() {
 
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
         userVM.refresh()
-        view.findViewById<Button>(R.id.btnRegister).setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
-            Navigation.findNavController(it).navigate(action)
-        }
         val btnregis = view.findViewById<Button>(R.id.btnRegister)
         btnregis.setOnClickListener{
             val action= LoginFragmentDirections.actionLoginFragmentToRegisterFragment()

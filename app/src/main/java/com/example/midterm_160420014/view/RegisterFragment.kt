@@ -15,7 +15,7 @@ class RegisterFragment : Fragment() {
     private lateinit var userVM: UserViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val btnRegister = view.findViewById<Button>(R.id.btnRegister)
+        val btnRegister = view.findViewById<Button>(R.id.btnSubmitRegister)
         var username = view.findViewById<EditText>(R.id.nameEditTextRegis).text.toString();
         var email = view.findViewById<EditText>(R.id.emailEditTextRegis).text.toString();
         var password = view.findViewById<EditText>(R.id.passwordEditTextRegis).text.toString();
