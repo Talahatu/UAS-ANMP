@@ -22,16 +22,8 @@ data class Users(
 
 ) {
     @PrimaryKey(autoGenerate = true)
-    var uuid:Int=0
+    var uuid: Int = 0
 }
-
-data class ApiResponse(
-    @ColumnInfo("status")
-    val status:String?,
-    @ColumnInfo("message")
-    val message:String?,
-)
-
 @Entity()
 data class Restaurants(
     @ColumnInfo("name")
@@ -64,12 +56,12 @@ data class Menus(
     var uuid:Int=0
 }
 
-@Entity()
-data class Reviews(
-    @ColumnInfo("id")
-    val id:Int,
-    @ColumnInfo("restaurant_id")
+@Entity("reviews")
+data class Review(
+    @ColumnInfo("resto_id")
     val restoId:Int,
+    @ColumnInfo("menu_id")
+    val menuId:Int,
     @ColumnInfo("user_id")
     val userId:Int,
     @ColumnInfo("comment")

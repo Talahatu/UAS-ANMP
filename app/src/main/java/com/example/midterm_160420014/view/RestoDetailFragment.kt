@@ -19,10 +19,7 @@ import com.android.volley.RequestQueue
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.databinding.FragmentProfileBinding
 import com.example.midterm_160420014.databinding.FragmentRestoDetailBinding
-import com.example.midterm_160420014.model.Menus
-import com.example.midterm_160420014.model.Promos
-import com.example.midterm_160420014.model.Restaurants
-import com.example.midterm_160420014.model.Reviews
+import com.example.midterm_160420014.model.*
 import com.example.midterm_160420014.util.buildDB
 import com.example.midterm_160420014.viewModel.RestoDetailViewModel
 import com.squareup.picasso.Picasso
@@ -70,14 +67,14 @@ class RestoDetailFragment : Fragment(), BuyListener, ReviewListener {
     override fun onBuyDetailClick(v: View, menu: Menus, restaurant: Restaurants) {
         val uuid = context?.getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
             ?.getString("uuid","")!!.toInt()
-        val action = RestoDetailFragmentDirections.actionRestoDetailFragmentToCheckoutFragment(uuid)
+        val action = RestoDetailFragmentDirections.actionRestoDetailFragmentToReviewFragment(restaurant.uuid,menu.uuid)
         Navigation.findNavController(v).navigate(action)
     }
 
     override fun onReviewDetailClick(v: View, menu: Menus, restaurant: Restaurants, review: Reviews) {
         val uuid = context?.getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
             ?.getString("uuid","")!!.toInt()
-        val action = RestoDetailFragmentDirections.actionRestoDetailFragmentToReviewFragment(uuid)
+        val action = RestoDetailFragmentDirections.actionRestoDetailFragmentToReviewFragment(restaurant.uuid,menu.uuid)
         Navigation.findNavController(v).navigate(action)
     }
 

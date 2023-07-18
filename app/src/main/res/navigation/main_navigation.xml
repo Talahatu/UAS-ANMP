@@ -27,6 +27,7 @@
             app:destination="@id/core_navigation"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
+
     </fragment>
     <include app:graph="@navigation/core_navigation" />
     <fragment

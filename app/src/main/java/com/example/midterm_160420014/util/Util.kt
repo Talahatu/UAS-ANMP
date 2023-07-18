@@ -65,7 +65,19 @@ val MIGRATION_5_6 = object :Migration(5,6){
         )
     }
 }
-
+val MIGRATION_6_7 = object :Migration(6,7){
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            "CREATE TABLE reviews("+
+                    "'resto_id' INT NOT NULL,"+
+                    "'menu_id' TEXT NOT NULL,"+
+                    "'user_id' INT NOT NULL,"+
+                    "'comment' TEXT NOT NULL,"+
+                    "'uuid' INT NOT NULL,"+
+                    "PRIMARY KEY('uuid'))"
+        )
+    }
+}
 val MIGRATION_7_8 = object :Migration(7,8){
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL(
@@ -73,11 +85,10 @@ val MIGRATION_7_8 = object :Migration(7,8){
         )
     }
 }
-
 fun buildDB(context: Context): KulinerDatabase{
  return Room.databaseBuilder(
      context,
      KulinerDatabase::class.java,
      DB_NAME).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5,
-     MIGRATION_5_6, MIGRATION_7_8).build();
+     MIGRATION_5_6,MIGRATION_6_7,MIGRATION_7_8).build();
 }

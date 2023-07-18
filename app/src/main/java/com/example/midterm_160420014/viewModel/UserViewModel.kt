@@ -16,25 +16,32 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
-
 class UserViewModel(application: Application): AndroidViewModel(application), CoroutineScope  {
     val userData= MutableLiveData<Users?>()
+    val allUserData = MutableLiveData<ArrayList<Users>>()
     val updateStatus = MutableLiveData<Boolean>()
 
 
     override val coroutineContext: CoroutineContext
         get() = Job() +Dispatchers.IO
 
+    fun addAllUserData(){
+        launch {
+            val db= buildDB(getApplication())
+            val users = db.userDao().selectAll()
+            allUserData.postValue(users as ArrayList<Users>)
+        }
+    }
 
-    fun updateSaldo(nominal:Int,uuid:Int){
+    fun updateProfile(uuid:Int,name:String,email:String,password:String){
         launch {
             val db = buildDB(getApplication())
-            val affectingRow = db.userDao().updateSaldo(nominal,uuid)
-            if(affectingRow>0){
-                Log.d("TEST 1","TEST 1")
-                updateStatus.postValue(true)
-                getUser(uuid)
-            }
+//            val affectingRow = db.userDao().updateSaldo(nominal,uuid)
+//            if(affectingRow>0){
+//                Log.d("TEST 1","TEST 1")
+//                updateStatus.postValue(true)
+//                getUser(uuid)
+//            }
         }
     }
 
@@ -84,3 +91,4 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
         }
     }
 }
+
