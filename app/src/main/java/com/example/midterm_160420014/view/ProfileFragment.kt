@@ -34,12 +34,12 @@ class ProfileFragment : Fragment(), ProfileOnClickListener {
         userVM.getUser(sharedPref.getString("uuid","")!!.toInt())
         dataBinding.profileListener=this
         observe()
-
         val btnlogout=view.findViewById<Button>(R.id.buttonLogout)
         btnlogout.setOnClickListener{
             val editor:SharedPreferences.Editor=sharedPref.edit()
             editor.clear()
             editor.apply()
+
             userVM.clearData()
             findNavController().popBackStack(findNavController().graph.startDestinationId,true)
             val navController = Navigation.findNavController(requireActivity(),R.id.fragment_host)
@@ -55,6 +55,7 @@ class ProfileFragment : Fragment(), ProfileOnClickListener {
             for(entri in findNavController().backQueue){
                 Log.d("BACKSTACK PREV: ",entri.destination.displayName)
             }
+
         }
     }
     private fun observe(){

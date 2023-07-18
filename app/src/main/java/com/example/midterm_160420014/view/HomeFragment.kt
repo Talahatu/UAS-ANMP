@@ -20,11 +20,8 @@ private lateinit var restoVM:ListRestoViewModel
     private val restaurantListAdapter=RestaurantListAdapter(arrayListOf())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         restoVM = ViewModelProvider(this).get(ListRestoViewModel::class.java)
         restoVM.refreshData()
-
         val recView = view.findViewById<RecyclerView>(R.id.recView)
         recView.layoutManager=LinearLayoutManager(context)
         recView.adapter=restaurantListAdapter
