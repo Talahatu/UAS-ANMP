@@ -47,10 +47,10 @@ class RestoDetailFragment : Fragment(), BuyListener, PromoListener, ReviewListen
 
         observe()
         view.findViewById<Button>(R.id.btnPromoDetail).setOnClickListener {
-            Navigation.findNavController(it).navigate(RestoDetailFragmentDirections.actionRestoDetailFragmentToPromoFragment(id))
+//            Navigation.findNavController(it).navigate(RestoDetailFragmentDirections.actionRestoDetailFragmentToPromoFragment(id))
         }
         view.findViewById<Button>(R.id.btnBuy).setOnClickListener {
-            Navigation.findNavController(it).navigate(RestoDetailFragmentDirections.actionRestoDetailFragmentToMenuFragment(id))
+
         }
         view.findViewById<Button>(R.id.btnReview).setOnClickListener {
             Navigation.findNavController(it).navigate(RestoDetailFragmentDirections.actionRestoDetailFragmentToReviewFragment(id))

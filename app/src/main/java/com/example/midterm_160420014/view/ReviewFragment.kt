@@ -23,7 +23,9 @@ class ReviewFragment : Fragment() {
         userVM.userData.observe(viewLifecycleOwner, Observer {user->
             reviewVM.reviewList.observe(viewLifecycleOwner, Observer {
                 Log.d("Content: ",it.toString())
-                reviewAdapter.updatereviewList(it,user)
+                if (user != null) {
+                    reviewAdapter.updatereviewList(it,user)
+                }
             })
         })
     }

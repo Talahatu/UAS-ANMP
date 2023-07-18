@@ -1,5 +1,6 @@
 package com.example.midterm_160420014.view
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.drawerlayout.widget.DrawerLayout
@@ -11,6 +12,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var userLogin = getSharedPreferences("UserLogin", Context.MODE_PRIVATE);
+        var id = userLogin.getString("uuid","Data not found");
+    }
+
+    override fun onBackPressed() {
+        val curFrag = findNavController(R.id.fragment_host).currentDestination?.label.toString()
+        if(curFrag=="fragment_login"){
+            return
+        }
+        else{
+            return super.onBackPressed()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
