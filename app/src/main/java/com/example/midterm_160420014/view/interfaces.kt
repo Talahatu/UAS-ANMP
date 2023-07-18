@@ -1,5 +1,6 @@
 package com.example.midterm_160420014.view
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -27,14 +28,17 @@ interface BuyListener{
     fun onBuyDetailClick(v: View, menu: Menus, restaurant: Restaurants)
 }
 
-interface PromoListener{
-    fun onPromoDetailClick(v: View, menu: Menus, promo: Promos)
-}
 interface ReviewListener{
-    fun onReviewDetailClick(v: View, menu: Menus, review: Reviews)
+    fun onReviewDetailClick(v: View, menu: Menus, restaurant: Restaurants, review: Reviews)
 }
 
 @BindingAdapter("imageUrl")
-fun loadImg(view: ImageView, url: String) {
-    Picasso.get().load(url).into(view)
+fun loadImg(view: ImageView, url: String?) {
+    Log.d("DATAS URL: ",url.toString())
+    if(url!=null && view!=null){
+        Picasso.get().load(url).into(view)
+    }
+    else{
+        Log.d("URL: ","IS NULL")
+    }
 }
