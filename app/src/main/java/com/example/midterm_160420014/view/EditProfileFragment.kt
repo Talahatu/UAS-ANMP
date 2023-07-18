@@ -55,7 +55,7 @@ class EditProfileFragment : Fragment(),EditProfileListener {
     }
 
     override fun onEditProfileClick(v: View,user:Users) {
-        userVM.updateProfile(user.uuid,user.name!!,user.email!!,user.password!!)
+        userVM.updateProfile(user.uuid,user.name!!,user.email!!,user.password!!,user.alamat!!)
         checkStatus()
     }
 }

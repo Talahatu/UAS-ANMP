@@ -14,7 +14,10 @@ interface EditProfileListener{
     fun onEditProfileClick(v:View, user:Users)
 }
 interface TopUpListener{
-
+    fun onClickTopup(v:View)
+}
+interface LogoutListener{
+    fun onClickLogout(v:View)
 }
 
 interface MenuRestaurantItemLayout{
@@ -26,7 +29,7 @@ interface BuyListener{
 }
 
 interface ReviewListener{
-    fun onReviewDetailClick(v: View, menu: Menus, restaurant: Restaurants, review: Reviews)
+    fun onReviewDetailClick(v: View, menu: Menus, restaurant: Restaurants)
 }
 
 @BindingAdapter("imageUrl")
