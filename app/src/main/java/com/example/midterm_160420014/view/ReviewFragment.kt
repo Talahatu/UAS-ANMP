@@ -24,11 +24,10 @@ class ReviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
+        val ids = ReviewFragmentArgs.fromBundle(requireArguments())
         reviewVM = ViewModelProvider(this)[ListReviewViewModel::class.java]
         restoVM = ViewModelProvider(this)[RestoDetailViewModel::class.java]
-        restoVM.menuList.value?.let {
-            reviewVM.viewReview(it.restoId,it.uuid)
-        }
+        reviewVM.viewReview(ids.restoId,ids.menuId)
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
         userVM.addAllUserData()
         val recView = view.findViewById<RecyclerView>(R.id.recView)
