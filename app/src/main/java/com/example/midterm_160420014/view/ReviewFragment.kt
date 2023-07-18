@@ -24,7 +24,6 @@ import com.google.android.material.textfield.TextInputLayout
 
 class ReviewFragment : Fragment() {
     private lateinit var reviewVM: ListReviewViewModel
-    private lateinit var restoVM:RestoDetailViewModel
     private lateinit var userVM: UserViewModel
     private val reviewAdapter = ReviewListAdapter(arrayListOf())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,30 +32,24 @@ class ReviewFragment : Fragment() {
         var userid=sharedPref.getString("uuid","")
         val ids = ReviewFragmentArgs.fromBundle(requireArguments())
         reviewVM = ViewModelProvider(this)[ListReviewViewModel::class.java]
-        restoVM = ViewModelProvider(this)[RestoDetailViewModel::class.java]
         reviewVM.viewReview(ids.restoId,ids.menuId)
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
         userVM.addAllUserData()
         val recView = view.findViewById<RecyclerView>(R.id.recView)
         recView.layoutManager= LinearLayoutManager(context)
         recView.adapter=reviewAdapter
-        observe()
         val btnAddReview = view.findViewById<Button>(R.id.btnAddReview)
         btnAddReview.setOnClickListener{
             val txtComment = view.findViewById<EditText>(R.id.txtComment).text.toString()
             reviewVM.addReview(userid!!.toInt(),ids.menuId,ids.restoId,txtComment)
             Toast.makeText(context,"Comment added", Toast.LENGTH_SHORT).show()
-            reviewVM.viewReview(ids.restoId,ids.menuId)
-            userVM.addAllUserData()
             observe()
         }
+        observe()
     }
-    fun observe(){
-        Log.d("MASUK: ","Masuk")
+    private fun observe(){
         reviewVM.reviewList.observe(viewLifecycleOwner, Observer {
-            Log.d("Review: ",it.toString())
             userVM.allUserData.observe(viewLifecycleOwner, Observer {user->
-                Log.d("User: ", user.toString() )
                 reviewAdapter.updatereviewList(it,user)
             })
         })
