@@ -22,7 +22,6 @@ class RestaurantListAdapter(val menuList:ArrayList<Menus>):RecyclerView.Adapter<
     class RestaurantViewHolder(var v: CardRestaurantListBinding):RecyclerView.ViewHolder(v.root)
     private lateinit var context:Context
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = DataBindingUtil.inflate<CardRestaurantListBinding>(inflater, R.layout.card_restaurant_list,parent,false)
@@ -46,8 +45,8 @@ class RestaurantListAdapter(val menuList:ArrayList<Menus>):RecyclerView.Adapter<
     }
 
     override fun onDetailClick(v: View, menu: Menus) {
-        val uuid = context.getSharedPreferences("UserLogin", Context.MODE_PRIVATE).getString("uuid","")!!.toInt()
-        val action = HomeFragmentDirections.actionItemHomeToRestoDetailFragment(uuid)
+        val menuid = menu.uuid
+        val action = HomeFragmentDirections.actionItemHomeToRestoDetailFragment(menuid)
         Navigation.findNavController(v).navigate(action)
     }
 }

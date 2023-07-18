@@ -69,8 +69,8 @@ val MIGRATION_6_7 = object :Migration(6,7){
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL(
             "CREATE TABLE reviews("+
-                    "'resto_id' INT NOT NULL,"+
-                    "'menu_id' TEXT NOT NULL,"+
+                    "'resto_id' INTEGER NOT NULL,"+
+                    "'menu_id' INT NOT NULL,"+
                     "'user_id' INT NOT NULL,"+
                     "'comment' TEXT NOT NULL,"+
                     "'uuid' INT NOT NULL,"+
