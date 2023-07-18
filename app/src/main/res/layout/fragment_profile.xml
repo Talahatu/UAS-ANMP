@@ -9,6 +9,15 @@
         <variable
             name="profileListener"
             type="com.example.midterm_160420014.view.ProfileOnClickListener" />
+        <variable
+            name="topupListener"
+            type="com.example.midterm_160420014.view.TopUpListener" />
+        <variable
+            name="logoutListener"
+            type="com.example.midterm_160420014.view.LogoutListener" />
+        <variable
+            name="userVM"
+            type="com.example.midterm_160420014.viewModel.UserViewModel" />
     </data>
 <FrameLayout
     android:layout_width="match_parent"
@@ -27,7 +36,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="saldo..."
+            android:hint="Top up..."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12">
@@ -35,7 +44,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextSaldo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -46,6 +55,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:text="Top Up"
+            android:onClick="@{topupListener::onClickTopup}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout6" />
@@ -66,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="0"
+            android:text="@{String.valueOf(user.saldo)}"
             app:layout_constraintStart_toEndOf="@+id/textView12"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -109,6 +119,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:text="LOGOUT"
+            android:onClick="@{logoutListener::onClickLogout}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

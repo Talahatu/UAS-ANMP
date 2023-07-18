@@ -11,7 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,43 +25,33 @@ import androidx.navigation.fragment.findNavController
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.databinding.FragmentProfileBinding
 import com.example.midterm_160420014.viewModel.UserViewModel
+import com.google.android.material.textfield.TextInputEditText
 
-class ProfileFragment : Fragment(), ProfileOnClickListener {
+class ProfileFragment : Fragment(), ProfileOnClickListener,LogoutListener,TopUpListener {
     private lateinit var userVM:UserViewModel
     private lateinit var dataBinding:FragmentProfileBinding
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
         val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
         userVM.getUser(sharedPref.getString("uuid","")!!.toInt())
         dataBinding.profileListener=this
+        dataBinding.logoutListener=this
+        dataBinding.topupListener=this
         observe()
-
-        val btnlogout=view.findViewById<Button>(R.id.buttonLogout)
-        btnlogout.setOnClickListener{
-            val editor:SharedPreferences.Editor=sharedPref.edit()
-            editor.clear()
-            editor.apply()
-            userVM.clearData()
-            findNavController().popBackStack(findNavController().graph.startDestinationId,true)
-            val navController = Navigation.findNavController(requireActivity(),R.id.fragment_host)
-            navController.popBackStack(navController.graph.startDestinationId,false)
-            navController.navigate(R.id.loginFragment)
-
-            activity?.recreate()
-
-            val backstack = navController.backQueue
-            for (entry in backstack){
-                Log.d("BACKSTACK: ",entry.destination.displayName)
-            }
-            for(entri in findNavController().backQueue){
-                Log.d("BACKSTACK PREV: ",entri.destination.displayName)
-            }
-        }
     }
     private fun observe(){
         userVM.userData.observe(viewLifecycleOwner, Observer {
             dataBinding.user=it
+        })
+    }
+    private fun checkStatus(nominal:TextInputEditText){
+        userVM.updateStatus.observe(viewLifecycleOwner, Observer {
+            if(it==true){
+                Toast.makeText(context,"Top up success!!",Toast.LENGTH_SHORT).show()
+                nominal.setText("0")
+            }
         })
     }
     override fun onCreateView(
@@ -74,5 +66,28 @@ class ProfileFragment : Fragment(), ProfileOnClickListener {
     override fun onProfileClick(v: View) {
         val action=ProfileFragmentDirections.actionItemProfileToEditProfileFragment()
         Navigation.findNavController(v).navigate(action)
+    }
+
+    override fun onClickTopup(v: View) {
+        val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
+        val nominal = view?.findViewById<TextInputEditText>(R.id.editTextSaldo)
+        if (nominal?.text.toString() != "" && nominal?.text.toString().toInt()>0) {
+            userVM.updateSaldo(nominal?.text.toString().toInt(),sharedPref.getString("uuid","")!!.toInt())
+            checkStatus(nominal!!)
+        }
+    }
+
+    override fun onClickLogout(v: View) {
+        val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
+        val editor:SharedPreferences.Editor=sharedPref.edit()
+        editor.clear()
+        editor.apply()
+        userVM.clearData()
+        findNavController().popBackStack(findNavController().graph.startDestinationId,true)
+        val navController = Navigation.findNavController(requireActivity(),R.id.fragment_host)
+        navController.popBackStack(navController.graph.startDestinationId,false)
+        navController.navigate(R.id.loginFragment)
+
+        activity?.recreate()
     }
 }
