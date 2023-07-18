@@ -26,7 +26,7 @@ class RegisterFragment : Fragment() {
             var email = view.findViewById<TextInputEditText>(R.id.emailEditTextRegis).text.toString();
             var password = view.findViewById<TextInputEditText>(R.id.passwordEditTextRegis).text.toString();
             var repassword = view.findViewById<TextInputEditText>(R.id.rePassEditTextRegis).text.toString();
-            if(password==repassword){
+            if(password==repassword && email != "" && password!=""&&email.contains("@")){
                 userVM.register(username,email,password)
                 val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
                 Navigation.findNavController(it).navigate(action)
