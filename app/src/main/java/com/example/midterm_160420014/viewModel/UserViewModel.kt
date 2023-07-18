@@ -2,6 +2,7 @@ package com.example.midterm_160420014.viewModel
 
 import android.app.Application
 import android.util.Log
+import android.widget.EditText
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
@@ -9,6 +10,7 @@ import com.android.volley.RequestQueue
 import com.example.midterm_160420014.model.KulinerDatabase
 import com.example.midterm_160420014.model.Users
 import com.example.midterm_160420014.util.buildDB
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -17,24 +19,29 @@ import kotlin.coroutines.CoroutineContext
 
 class UserViewModel(application: Application): AndroidViewModel(application), CoroutineScope  {
     val userData= MutableLiveData<Users?>()
-    val status = MutableLiveData<Boolean>()
     val updateStatus = MutableLiveData<Boolean>()
-    var queue: RequestQueue?=null
-
-    val tag="abc"
 
 
     override val coroutineContext: CoroutineContext
         get() = Job() +Dispatchers.IO
 
-    fun updateProfile(uuid:Int,name:String,email:String,password:String){
+
+    fun updateSaldo(nominal:Int,uuid:Int){
         launch {
             val db = buildDB(getApplication())
-            val affectedRows = db.userDao().updateProfile(name, email, password, uuid)
-            Log.d("NAME: ",name);
-            Log.d("EMAIL: ",email);
-            Log.d("PASSWORD: ",password);
-            Log.d("UUID: ",uuid.toString());
+            val affectingRow = db.userDao().updateSaldo(nominal,uuid)
+            if(affectingRow>0){
+                Log.d("TEST 1","TEST 1")
+                updateStatus.postValue(true)
+                getUser(uuid)
+            }
+        }
+    }
+
+    fun updateProfile(uuid:Int,name:String,email:String,password:String,alamat:String){
+        launch {
+            val db = buildDB(getApplication())
+            val affectedRows = db.userDao().updateProfile(name, email, password,alamat, uuid)
             updateStatus.postValue(affectedRows>0)
         }
     }
@@ -61,7 +68,6 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
     }
     fun clearData(){
         userData.value=null
-        Log.d("USERDATA: ",userData.value.toString())
     }
 
     fun login(email:String,password:String){

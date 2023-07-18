@@ -14,7 +14,10 @@ interface EditProfileListener{
     fun onEditProfileClick(v:View, user:Users)
 }
 interface TopUpListener{
-
+    fun onClickTopup(v:View)
+}
+interface LogoutListener{
+    fun onClickLogout(v:View)
 }
 
 interface MenuRestaurantItemLayout{
