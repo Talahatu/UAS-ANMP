@@ -68,7 +68,6 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
     }
     fun clearData(){
         userData.value=null
-        Log.d("USERDATA: ",userData.value.toString())
     }
 
     fun login(email:String,password:String){

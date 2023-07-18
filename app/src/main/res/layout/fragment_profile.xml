@@ -18,6 +18,7 @@
         <variable
             name="userVM"
             type="com.example.midterm_160420014.viewModel.UserViewModel" />
+
     </data>
 <FrameLayout
     android:layout_width="match_parent"
