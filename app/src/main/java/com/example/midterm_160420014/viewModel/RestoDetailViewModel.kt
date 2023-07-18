@@ -44,6 +44,14 @@ class RestoDetailViewModel(application: Application): AndroidViewModel(applicati
         }
     }
 
+    fun getMenu(id:Int){
+        launch {
+            val db = buildDB(getApplication())
+            val food = db.menuDao().selectById(id)
+            menuList.postValue(food)
+        }
+    }
+
 
     override fun onCleared() {
         super.onCleared()

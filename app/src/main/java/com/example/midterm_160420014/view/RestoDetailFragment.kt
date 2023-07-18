@@ -65,7 +65,7 @@ class RestoDetailFragment : Fragment(), BuyListener, ReviewListener {
     }
 
     override fun onBuyDetailClick(v: View, menu: Menus, restaurant: Restaurants) {
-        val action = RestoDetailFragmentDirections.actionRestoDetailFragmentToCheckoutFragment(menu.uuid)
+        val action = RestoDetailFragmentDirections.actionRestoDetailFragmentToCheckoutFragment(menu.uuid,menu.restoId)
         Navigation.findNavController(v).navigate(action)
     }
 

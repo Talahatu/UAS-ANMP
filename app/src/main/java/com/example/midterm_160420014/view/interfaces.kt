@@ -41,9 +41,7 @@ interface ReviewListener{
 
 @BindingAdapter("imageUrl")
 fun loadImg(view: ImageView, url: String?) {
-    Log.d("DATAS URL: ",url.toString())
-    if(url!=null && view!=null){
-        Log.d("GAMBAR: ",view.toString())
+    if(url!=null){
         Picasso.get().load(url).into(view)
     }
     else{

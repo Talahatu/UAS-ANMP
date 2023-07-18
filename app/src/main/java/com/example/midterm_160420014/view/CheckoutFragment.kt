@@ -2,14 +2,19 @@ package com.example.midterm_160420014.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged
+import androidx.navigation.fragment.findNavController
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.databinding.FragmentCheckoutBinding
 import com.example.midterm_160420014.model.Users
@@ -28,8 +33,8 @@ class CheckoutFragment : Fragment(),CheckoutListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = DataBindingUtil.inflate<FragmentCheckoutBinding>(inflater,R.layout.fragment_checkout, container, false)
-        return view.root
+        dataBinding = DataBindingUtil.inflate<FragmentCheckoutBinding>(inflater,R.layout.fragment_checkout, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,27 +42,52 @@ class CheckoutFragment : Fragment(),CheckoutListener {
         menuVM = ViewModelProvider(this)[RestoDetailViewModel::class.java]
         userVM  =ViewModelProvider(this)[UserViewModel::class.java]
         historyVM = ViewModelProvider(this)[ListHistoryViewModel::class.java]
+        dataBinding.checkoutListener = this
+        view.findViewById<Button>(R.id.btnCheckout).isEnabled = false
+
+        val ids = ReviewFragmentArgs.fromBundle(requireArguments())
+        val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
+        val id = sharedPref.getString("uuid","")!!.toInt()
+        menuVM.getMenu(ids.menuId)
+        userVM.getUser(id)
         observe()
     }
-
-    fun observe(){
-        menuVM.menuList.observe(viewLifecycleOwner, Observer {
-            dataBinding.menu = it
-            dataBinding.user = userVM.userData.value
+    private fun observe(){
+        menuVM.menuList.observe(viewLifecycleOwner, Observer {menu->
+            userVM.userData.observe(viewLifecycleOwner, Observer {user->
+                dataBinding.user=user
+                dataBinding.menu=menu
+            })
+        })
+        historyVM.subtotal.observe(viewLifecycleOwner, Observer {
+            dataBinding.subtotal = it
         })
     }
 
     override fun onClickCheckout(v: View,user: Users) {
         val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
         val id = sharedPref.getString("uuid","")!!.toInt()
-        val qty = view?.findViewById<TextInputEditText>(R.id.editTextQty)
-        val subtotal = view?.findViewById<TextView>(R.id.txtCheckoutSubtotal)?.text.toString().toInt()
-        historyVM.checkoutOrder(id,menuVM.menuList.value!!.uuid,qty?.text.toString().toInt(),user.alamat!!,subtotal)
+        historyVM.checkoutOrder(id,menuVM.menuList.value!!.uuid,historyVM.qty.value!!,user.alamat!!,historyVM.subtotal.value!!)
+        findNavController().popBackStack()
+        Toast.makeText(context,"Checkout Success!!",Toast.LENGTH_SHORT).show()
     }
 
+    private fun setButtonEnabled(){
+        view?.findViewById<Button>(R.id.btnCheckout)?.isEnabled = true
+    }
+    private fun setButtonDisabled(){
+        view?.findViewById<Button>(R.id.btnCheckout)?.isEnabled = false
+    }
     override fun onQtyTextChange(s: CharSequence, start: Int, before: Int, count: Int) {
-        var qty = s.toString().toInt()
-        var subtotal = menuVM.menuList.value!!.price*qty
-        view?.findViewById<TextView>(R.id.txtCheckoutSubtotal)?.text = subtotal.toString()
+        val qty = s.toString()
+        if(qty!="" && qty.toInt()>0){
+            historyVM.qty.postValue(qty.toInt())
+            historyVM.subtotal.postValue(menuVM.menuList.value!!.price * qty.toInt())
+            setButtonEnabled()
+        }
+        else{
+            setButtonDisabled()
+            historyVM.subtotal.postValue(0)
+        }
     }
 }

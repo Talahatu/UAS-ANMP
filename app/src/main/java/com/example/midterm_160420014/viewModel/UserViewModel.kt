@@ -33,15 +33,14 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
         }
     }
 
-    fun updateProfile(uuid:Int,name:String,email:String,password:String){
+    fun updateSaldo(nominal:Int,uuid:Int){
         launch {
             val db = buildDB(getApplication())
-//            val affectingRow = db.userDao().updateSaldo(nominal,uuid)
-//            if(affectingRow>0){
-//                Log.d("TEST 1","TEST 1")
-//                updateStatus.postValue(true)
-//                getUser(uuid)
-//            }
+            val affectingRow = db.userDao().updateSaldo(nominal,uuid)
+            if(affectingRow>0){
+                updateStatus.postValue(true)
+                getUser(uuid)
+            }
         }
     }
 

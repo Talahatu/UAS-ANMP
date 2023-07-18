@@ -12,6 +12,12 @@
         <variable
             name="checkoutListener"
             type="com.example.midterm_160420014.view.CheckoutListener" />
+        <variable
+            name="subtotal"
+            type="Integer" />
+        <variable
+            name="qty"
+            type="Integer" />
     </data>
 <FrameLayout
     android:layout_width="match_parent"
@@ -41,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:text="TextView"
+            android:text="@{String.valueOf(subtotal)}"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
@@ -74,7 +80,8 @@
                 android:id="@+id/editTextQty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onTextChanged="@{checkoutListener::onQtyTextChange}" />
+                android:onTextChanged="@{checkoutListener::onQtyTextChange}"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView

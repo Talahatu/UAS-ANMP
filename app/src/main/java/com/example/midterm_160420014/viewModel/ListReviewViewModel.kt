@@ -15,9 +15,7 @@ import kotlin.coroutines.CoroutineContext
 
 class ListReviewViewModel(application: Application): AndroidViewModel(application),CoroutineScope {
     val reviewList = MutableLiveData<ArrayList<Review>>()
-    var queue: RequestQueue?=null
 
-    val tag="abc"
     override val coroutineContext: CoroutineContext
         get() = Job() +Dispatchers.IO
 
@@ -32,12 +30,8 @@ class ListReviewViewModel(application: Application): AndroidViewModel(applicatio
         launch {
             val db= buildDB(getApplication())
             val review=db.reviewDao().insertReview(Review(resto_id,menu_id,user_id,comment))
+            viewReview(resto_id,menu_id)
         }
     }
 
-
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(tag)
-    }
 }

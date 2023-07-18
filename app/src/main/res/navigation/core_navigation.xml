@@ -66,7 +66,10 @@
         android:name="com.example.midterm_160420014.view.CheckoutFragment"
         android:label="fragment_checkout"
         tools:layout="@layout/fragment_checkout" >
-        <argument android:name="id"
+        <argument android:name="menu_id"
+            app:argType="integer" />
+        <argument
+            android:name="resto_id"
             app:argType="integer" />
     </fragment>
 </navigation>
