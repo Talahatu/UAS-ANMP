@@ -10,9 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midterm_160420014.R
+import com.example.midterm_160420014.model.Menus
+import com.example.midterm_160420014.model.Users
 import com.example.midterm_160420014.viewModel.ListRestoViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(){
 private lateinit var restoVM:ListRestoViewModel
     private val restaurantListAdapter=RestaurantListAdapter(arrayListOf())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,7 +30,7 @@ private lateinit var restoVM:ListRestoViewModel
     }
     fun observe(){
         restoVM.menuList.observe(viewLifecycleOwner, Observer {
-            restaurantListAdapter.updateRestoList(it)
+            restaurantListAdapter.updateRestoList(it,requireContext())
         })
     }
 
@@ -39,5 +41,4 @@ private lateinit var restoVM:ListRestoViewModel
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
-
 }

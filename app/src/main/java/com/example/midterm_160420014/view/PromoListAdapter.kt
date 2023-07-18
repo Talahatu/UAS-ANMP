@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.midterm_160420014.model.Promo
+import com.example.midterm_160420014.model.Promos
 import com.example.midterm_160420014.R
 
-class PromoListAdapter(val promoList:ArrayList<Promo>): RecyclerView.Adapter<PromoListAdapter.PromoViewHolder>()  {
+class PromoListAdapter(val promoList:ArrayList<Promos>): RecyclerView.Adapter<PromoListAdapter.PromoViewHolder>()  {
     class PromoViewHolder(var v: View):RecyclerView.ViewHolder(v)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PromoListAdapter.PromoViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -27,7 +27,7 @@ class PromoListAdapter(val promoList:ArrayList<Promo>): RecyclerView.Adapter<Pro
         }
     }
 
-    fun updatepromoList(list:ArrayList<Promo>){
+    fun updatepromoList(list:ArrayList<Promos>){
         promoList.clear()
         promoList.addAll(list)
         notifyDataSetChanged()

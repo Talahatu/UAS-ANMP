@@ -60,10 +60,10 @@ data class Menus(
 }
 
 @Entity()
-data class Review(
+data class Reviews(
     @ColumnInfo("id")
     val id:Int,
-    @ColumnInfo("resto_id")
+    @ColumnInfo("restaurant_id")
     val restoId:Int,
     @ColumnInfo("user_id")
     val userId:Int,
@@ -98,7 +98,7 @@ data class History(
 
 
 @Entity()
-data class Promo(
+data class Promos(
     @ColumnInfo("id")
     val id:Int,
     @ColumnInfo("code")
