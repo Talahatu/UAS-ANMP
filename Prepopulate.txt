@@ -31,3 +31,7 @@ VALUES (4, 80000, 1, 1, "2023-02-07")
 ,(3, 60000, 1, 2, "2023-02-07")
 ,(6, 180000, 1, 4, "2023-02-07")
 ,(2, 50000, 1, 8, "2023-02-07");
+
+## Review
+INSERT INTO reviews(resto_id,menu_id,user_id,comment)
+VALUES (1,1,1,"ENAK BANGET");
