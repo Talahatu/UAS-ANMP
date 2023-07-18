@@ -13,38 +13,38 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.viewModel.ListReviewViewModel
+import com.example.midterm_160420014.viewModel.RestoDetailViewModel
 import com.example.midterm_160420014.viewModel.UserViewModel
 
 class ReviewFragment : Fragment() {
     private lateinit var reviewVM: ListReviewViewModel
+    private lateinit var restoVM:RestoDetailViewModel
     private lateinit var userVM: UserViewModel
     private val reviewAdapter = ReviewListAdapter(arrayListOf())
-    fun observe(){
-        userVM.userData.observe(viewLifecycleOwner, Observer {user->
-            reviewVM.reviewList.observe(viewLifecycleOwner, Observer {
-                Log.d("Content: ",it.toString())
-                if (user != null) {
-                    reviewAdapter.updatereviewList(it,user)
-                }
-            })
-        })
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val sharedPref = requireActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
-        val id = ReviewFragmentArgs.fromBundle(requireArguments()).id
-
+        val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
         reviewVM = ViewModelProvider(this)[ListReviewViewModel::class.java]
+        restoVM = ViewModelProvider(this)[RestoDetailViewModel::class.java]
+        restoVM.menuList.value?.let {
+            reviewVM.viewReview(it.restoId,it.uuid)
+        }
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
-//        sharedPref.getString("id","")?.let {
-//            userVM.refresh(it)
-//            reviewVM.refreshData(id, it)
-//        }
-
+        userVM.addAllUserData()
         val recView = view.findViewById<RecyclerView>(R.id.recView)
         recView.layoutManager= LinearLayoutManager(context)
         recView.adapter=reviewAdapter
         observe()
+    }
+    fun observe(){
+        Log.d("MASUK: ","Masuk")
+        reviewVM.reviewList.observe(viewLifecycleOwner, Observer {
+            Log.d("Review: ",it.toString())
+            userVM.allUserData.observe(viewLifecycleOwner, Observer {user->
+                Log.d("User: ", user.toString() )
+                reviewAdapter.updatereviewList(it,user)
+            })
+        })
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
