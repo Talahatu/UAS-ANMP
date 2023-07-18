@@ -39,7 +39,6 @@ class RestoDetailViewModel(application: Application): AndroidViewModel(applicati
             val db = buildDB(getApplication())
             val food = db.menuDao().selectById(id)
             val resto = db.restaurantDao().selectById(food.restoId)
-
             menuList.postValue(food)
             restoList.postValue(resto)
         }
