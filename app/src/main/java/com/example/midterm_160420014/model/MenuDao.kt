@@ -14,5 +14,5 @@ interface MenuDao {
     fun selectById(id:Int):Menus
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg users: Menus)
+    fun insert(vararg menus: Menus)
 }
