@@ -25,7 +25,7 @@ class RestaurantListAdapter(val menuList:ArrayList<Menus>):RecyclerView.Adapter<
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = CardRestaurantListBinding.inflate(inflater, parent, false)
+        val view = DataBindingUtil.inflate<CardRestaurantListBinding>(inflater, R.layout.card_restaurant_list,parent,false)
         return RestaurantViewHolder(view)
     }
 
@@ -36,7 +36,6 @@ class RestaurantListAdapter(val menuList:ArrayList<Menus>):RecyclerView.Adapter<
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         holder.v.menu = menuList[position]
         holder.v.detailListener = this
-
     }
 
     fun updateRestoList(list:ArrayList<Menus>,ctx: Context){

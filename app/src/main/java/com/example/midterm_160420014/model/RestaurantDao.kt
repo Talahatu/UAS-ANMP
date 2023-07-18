@@ -14,5 +14,5 @@ interface RestaurantDao {
     fun selectById(id:Int):Restaurants
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg users: Restaurants)
+    fun insert(vararg restaurants: Restaurants)
 }

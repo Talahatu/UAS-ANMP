@@ -10,8 +10,6 @@
         <variable
             name="detailListener"
             type="com.example.midterm_160420014.view.MenuRestaurantItemLayout" />
-
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
