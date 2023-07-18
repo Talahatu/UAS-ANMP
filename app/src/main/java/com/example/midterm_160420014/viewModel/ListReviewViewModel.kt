@@ -24,14 +24,14 @@ class ListReviewViewModel(application: Application): AndroidViewModel(applicatio
     fun viewReview(resto_id:Int,menu_id:Int){
         launch{
             val db = buildDB(getApplication())
-            val review = db.ReviewDao().selectReviewByMenu(resto_id,menu_id)
+            val review = db.reviewDao().selectReviewByMenu(resto_id,menu_id)
             reviewList.postValue(review as ArrayList<Review>)
         }
     }
     fun addReview(user_id:Int,menu_id: Int,resto_id: Int,comment:String){
         launch {
             val db= buildDB(getApplication())
-            val review=db.ReviewDao().insertReview(Review(resto_id,menu_id,user_id,comment))
+            val review=db.reviewDao().insertReview(Review(resto_id,menu_id,user_id,comment))
         }
     }
 

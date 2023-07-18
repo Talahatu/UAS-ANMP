@@ -70,7 +70,7 @@ val MIGRATION_6_7 = object :Migration(6,7){
         database.execSQL(
             "CREATE TABLE reviews("+
                     "'resto_id' INT NOT NULL,"+
-                    "'menu_id' TEXT NOT NULL,"+
+                    "'menu_id' INT NOT NULL,"+
                     "'user_id' INT NOT NULL,"+
                     "'comment' TEXT NOT NULL,"+
                     "'uuid' INT NOT NULL,"+
@@ -90,5 +90,5 @@ fun buildDB(context: Context): KulinerDatabase{
      context,
      KulinerDatabase::class.java,
      DB_NAME).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5,
-     MIGRATION_5_6,MIGRATION_6_7,MIGRATION_7_8).build();
+     MIGRATION_5_6,MIGRATION_6_7, MIGRATION_7_8).build();
 }
