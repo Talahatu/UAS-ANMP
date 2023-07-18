@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_restoDetailFragment_to_reviewFragment"
             app:destination="@id/reviewFragment" />
+        <action
+            android:id="@+id/action_restoDetailFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
     </fragment>
     <fragment
         android:id="@+id/reviewFragment"
@@ -55,4 +58,12 @@
         android:id="@+id/editProfileFragment"
         android:name="com.example.midterm_160420014.view.EditProfileFragment"
         android:label="EditProfileFragment" />
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.midterm_160420014.view.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" >
+        <argument android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

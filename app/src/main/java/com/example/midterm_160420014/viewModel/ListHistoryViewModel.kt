@@ -20,6 +20,7 @@ import kotlin.coroutines.CoroutineContext
 
 class ListHistoryViewModel(application: Application): AndroidViewModel(application),CoroutineScope {
     val historyList = MutableLiveData<ArrayList<History>>()
+    val notes = MutableLiveData<History>()
     override val coroutineContext: CoroutineContext
         get() = Job() +Dispatchers.IO
     fun refreshData(id:Int){
@@ -29,6 +30,11 @@ class ListHistoryViewModel(application: Application): AndroidViewModel(applicati
         }
     }
 
+    fun checkoutOrder(userID:Int,menuID:Int,quantity:Int,alamat:String,subtotal:Int){
+        launch {
+            val newHistory = History(quantity,subtotal,userID,menuID,"",alamat)
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()

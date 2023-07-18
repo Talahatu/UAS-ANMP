@@ -15,9 +15,6 @@
         <variable
             name="logoutListener"
             type="com.example.midterm_160420014.view.LogoutListener" />
-        <variable
-            name="userVM"
-            type="com.example.midterm_160420014.viewModel.UserViewModel" />
 
     </data>
 <FrameLayout

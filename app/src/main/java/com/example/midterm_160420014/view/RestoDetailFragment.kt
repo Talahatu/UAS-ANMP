@@ -54,12 +54,6 @@ class RestoDetailFragment : Fragment(), BuyListener, ReviewListener {
         dataBinding.buyListener=this
         dataBinding.reviewListener=this
         observe()
-        view.findViewById<Button>(R.id.btnBuy).setOnClickListener {
-            Navigation.findNavController(it).navigate(RestoDetailFragmentDirections.actionRestoDetailFragmentToReviewFragment(id))
-        }
-        view.findViewById<Button>(R.id.btnReview).setOnClickListener {
-            Navigation.findNavController(it).navigate(RestoDetailFragmentDirections.actionRestoDetailFragmentToReviewFragment(id))
-        }
     }
 
     fun observe(){
@@ -76,7 +70,7 @@ class RestoDetailFragment : Fragment(), BuyListener, ReviewListener {
     override fun onBuyDetailClick(v: View, menu: Menus, restaurant: Restaurants) {
         val uuid = context?.getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
             ?.getString("uuid","")!!.toInt()
-        val action = RestoDetailFragmentDirections.actionRestoDetailFragmentToReviewFragment(uuid)
+        val action = RestoDetailFragmentDirections.actionRestoDetailFragmentToCheckoutFragment(uuid)
         Navigation.findNavController(v).navigate(action)
     }
 

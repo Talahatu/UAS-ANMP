@@ -92,7 +92,9 @@ data class History(
     @ColumnInfo("menu_id")
     val menu_id:Int,
     @ColumnInfo("date")
-    val date:String
+    val date:String,
+    @ColumnInfo("alamat_tujuan")
+    val alamat:String
 )
 {
     @PrimaryKey(autoGenerate = true)

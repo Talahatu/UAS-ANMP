@@ -16,6 +16,13 @@ interface EditProfileListener{
 interface TopUpListener{
     fun onClickTopup(v:View)
 }
+interface CheckoutListener{
+    fun onClickCheckout(v:View,user:Users)
+
+    fun onQtyTextChange(s:CharSequence,start:Int,before:Int,count:Int)
+}
+
+
 interface LogoutListener{
     fun onClickLogout(v:View)
 }
