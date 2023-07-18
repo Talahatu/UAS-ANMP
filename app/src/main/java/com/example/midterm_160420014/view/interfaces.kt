@@ -12,6 +12,9 @@ interface ProfileOnClickListener{
 interface EditProfileListener{
     fun onEditProfileClick(v:View, user:Users)
 }
+interface TopUpListener{
+
+}
 
 interface MenuRestaurantItemLayout{
     fun onDetailClick(v: View, menu: Menus)
@@ -29,6 +32,6 @@ interface ReviewListener{
 }
 
 @BindingAdapter("imageUrl")
- fun loadImg(view: ImageView, url: String) {
+fun loadImg(view: ImageView, url: String) {
     Picasso.get().load(url).into(view)
 }
