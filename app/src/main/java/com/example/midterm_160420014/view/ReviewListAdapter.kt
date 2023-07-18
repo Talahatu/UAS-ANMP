@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.midterm_160420014.model.Review
+import com.example.midterm_160420014.model.Reviews
 import com.example.midterm_160420014.model.Users
 import com.example.midterm_160420014.R
 
-class ReviewListAdapter(val reviewList:ArrayList<Review> ): RecyclerView.Adapter<ReviewListAdapter.ReviewViewHolder>() {
+class ReviewListAdapter(val reviewList:ArrayList<Reviews> ): RecyclerView.Adapter<ReviewListAdapter.ReviewViewHolder>() {
     class ReviewViewHolder(var v: View):RecyclerView.ViewHolder(v)
     private lateinit var users:Users;
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewListAdapter.ReviewViewHolder {
@@ -31,7 +31,7 @@ class ReviewListAdapter(val reviewList:ArrayList<Review> ): RecyclerView.Adapter
         }
     }
 
-    fun updatereviewList(list:ArrayList<Review>,user:Users){
+    fun updatereviewList(list:ArrayList<Reviews>,user:Users){
         Log.d("Content 4:",user.toString())
         reviewList.clear()
         reviewList.addAll(list)

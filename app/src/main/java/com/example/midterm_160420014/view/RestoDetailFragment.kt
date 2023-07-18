@@ -15,7 +15,9 @@ import androidx.navigation.Navigation
 import com.android.volley.RequestQueue
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.model.Menus
+import com.example.midterm_160420014.model.Promos
 import com.example.midterm_160420014.model.Restaurants
+import com.example.midterm_160420014.model.Reviews
 import com.example.midterm_160420014.util.buildDB
 import com.example.midterm_160420014.viewModel.RestoDetailViewModel
 import com.squareup.picasso.Picasso
@@ -26,7 +28,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 
-class RestoDetailFragment : Fragment() {
+class RestoDetailFragment : Fragment(), BuyListener, PromoListener, ReviewListener {
 
     private lateinit var restoVM:RestoDetailViewModel
     override fun onCreateView(
@@ -66,6 +68,18 @@ class RestoDetailFragment : Fragment() {
             })
 
         })
+    }
+
+    override fun onBuyDetailClick(v: View, menu: Menus, restaurant: Restaurants) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onPromoDetailClick(v: View, menu: Menus, promo: Promos) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onReviewDetailClick(v: View, menu: Menus, review: Reviews) {
+        TODO("Not yet implemented")
     }
 
 
