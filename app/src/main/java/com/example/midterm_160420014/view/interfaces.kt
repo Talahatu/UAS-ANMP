@@ -29,7 +29,7 @@ interface BuyListener{
 }
 
 interface ReviewListener{
-    fun onReviewDetailClick(v: View, menu: Menus, restaurant: Restaurants, review: Reviews)
+    fun onReviewDetailClick(v: View, menu: Menus, restaurant: Restaurants)
 }
 
 @BindingAdapter("imageUrl")

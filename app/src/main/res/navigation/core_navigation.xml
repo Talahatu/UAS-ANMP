@@ -48,7 +48,10 @@
         android:label="fragment_review"
         tools:layout="@layout/fragment_review" >
         <argument
-            android:name="id"
+            android:name="menu_id"
+            app:argType="integer" />
+        <argument
+            android:name="resto_id"
             app:argType="integer" />
     </fragment>
     <fragment
