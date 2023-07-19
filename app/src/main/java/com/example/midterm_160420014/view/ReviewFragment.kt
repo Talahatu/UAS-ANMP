@@ -1,14 +1,11 @@
 package com.example.midterm_160420014.view
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -18,13 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.databinding.FragmentReviewBinding
-import com.example.midterm_160420014.model.Menus
-import com.example.midterm_160420014.model.Restaurants
 import com.example.midterm_160420014.viewModel.ListReviewViewModel
-import com.example.midterm_160420014.viewModel.RestoDetailViewModel
 import com.example.midterm_160420014.viewModel.UserViewModel
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 
 class ReviewFragment : Fragment(), AddReviewListener {
     private lateinit var reviewVM: ListReviewViewModel
@@ -66,8 +58,6 @@ class ReviewFragment : Fragment(), AddReviewListener {
         val txtComment = view?.findViewById<EditText>(R.id.txtComment)?.text.toString()
         reviewVM.addReview(userid!!.toInt(),ids.menuId,ids.restoId,txtComment)
         Toast.makeText(context,"Comment added", Toast.LENGTH_SHORT).show()
-        reviewVM.viewReview(ids.restoId,ids.menuId)
-        userVM.addAllUserData()
         observe()
     }
 }

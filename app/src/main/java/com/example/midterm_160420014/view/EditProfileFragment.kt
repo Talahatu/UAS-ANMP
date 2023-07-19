@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.databinding.FragmentEditProfileBinding
-import com.example.midterm_160420014.databinding.FragmentProfileBinding
 import com.example.midterm_160420014.model.Users
 import com.example.midterm_160420014.viewModel.UserViewModel
 

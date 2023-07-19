@@ -1,8 +1,6 @@
 package com.example.midterm_160420014.util
 
 import android.content.Context
-import androidx.navigation.NavController
-import androidx.room.ColumnInfo
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
