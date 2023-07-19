@@ -32,8 +32,17 @@ class RegisterFragment : Fragment() {
                 Navigation.findNavController(it).navigate(action)
                 Toast.makeText(it.context,"Register complete", Toast.LENGTH_SHORT).show()
             }
-            else{
+            else if(password!=repassword){
                 Toast.makeText(it.context,"Password doesn't match", Toast.LENGTH_SHORT).show()
+            }
+            else if(email == "" && password==""){
+                Toast.makeText(it.context,"Email and Password can't be empty", Toast.LENGTH_SHORT).show()
+            }
+            else if(email.contains("@")==false){
+                Toast.makeText(it.context,"Email is not valid", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(it.context,"Register failed, please check your input", Toast.LENGTH_SHORT).show()
             }
         }
     }
