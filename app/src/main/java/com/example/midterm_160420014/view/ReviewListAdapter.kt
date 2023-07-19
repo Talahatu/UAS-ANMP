@@ -38,7 +38,6 @@ class ReviewListAdapter(val reviewList:ArrayList<Review> ): RecyclerView.Adapter
     }
 
     fun updatereviewList(list:ArrayList<Review>,user:ArrayList<Users>){
-        Log.d("Content 4:",user.toString())
         reviewList.clear()
         reviewList.addAll(list)
         users.clear()

@@ -72,7 +72,7 @@ class ProfileFragment : Fragment(), ProfileOnClickListener,LogoutListener,TopUpL
         val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
         val nominal = view?.findViewById<TextInputEditText>(R.id.editTextSaldo)
         if (nominal?.text.toString() != "" && nominal?.text.toString().toInt()>0) {
-//            userVM.updateSaldo(nominal?.text.toString().toInt(),sharedPref.getString("uuid","")!!.toInt())
+            userVM.updateSaldo(nominal?.text.toString().toInt(),sharedPref.getString("uuid","")!!.toInt())
             checkStatus(nominal!!)
         }
     }

@@ -28,7 +28,6 @@ import com.google.android.material.textfield.TextInputLayout
 
 class ReviewFragment : Fragment(), AddReviewListener {
     private lateinit var reviewVM: ListReviewViewModel
-    private lateinit var restoVM:RestoDetailViewModel
     private lateinit var userVM: UserViewModel
     private lateinit var databinding:FragmentReviewBinding
     private val reviewAdapter = ReviewListAdapter(arrayListOf())
@@ -36,7 +35,6 @@ class ReviewFragment : Fragment(), AddReviewListener {
         super.onViewCreated(view, savedInstanceState)
         val ids = ReviewFragmentArgs.fromBundle(requireArguments())
         reviewVM = ViewModelProvider(this)[ListReviewViewModel::class.java]
-        restoVM = ViewModelProvider(this)[RestoDetailViewModel::class.java]
         reviewVM.viewReview(ids.restoId,ids.menuId)
         userVM = ViewModelProvider(this)[UserViewModel::class.java]
         userVM.addAllUserData()
@@ -46,12 +44,9 @@ class ReviewFragment : Fragment(), AddReviewListener {
         recView.adapter=reviewAdapter
         observe()
     }
-    fun observe(){
-        Log.d("MASUK: ","Masuk")
+    private fun observe(){
         reviewVM.reviewList.observe(viewLifecycleOwner, Observer {
-            Log.d("Review: ",it.toString())
             userVM.allUserData.observe(viewLifecycleOwner, Observer {user->
-                Log.d("User: ", user.toString() )
                 reviewAdapter.updatereviewList(it,user)
             })
         })

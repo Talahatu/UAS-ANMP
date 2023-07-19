@@ -28,8 +28,6 @@ class ListRestoViewModel(application: Application):AndroidViewModel(application)
     val errorStatus = MutableLiveData<Boolean>()
     val loadingStatus = MutableLiveData<Boolean>()
 
-    val tag="abc"
-    var queue:RequestQueue?=null
 
     fun refreshData(){
         loadingStatus.value=true
@@ -40,12 +38,6 @@ class ListRestoViewModel(application: Application):AndroidViewModel(application)
             menuList.postValue(food as ArrayList<Menus>?)
         }
 
-    }
-
-
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(tag)
     }
 
 }
