@@ -31,7 +31,9 @@ interface BuyListener{
 interface ReviewListener{
     fun onReviewDetailClick(v: View, menu: Menus, restaurant: Restaurants)
 }
-
+interface AddReviewListener{
+    fun onAddReviewClick(v: View)
+}
 @BindingAdapter("imageUrl")
 fun loadImg(view: ImageView, url: String?) {
     Log.d("DATAS URL: ",url.toString())
