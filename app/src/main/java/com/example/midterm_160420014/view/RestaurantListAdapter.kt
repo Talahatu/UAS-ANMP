@@ -4,18 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.midterm_160420014.model.Restaurants
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.databinding.CardRestaurantListBinding
 import com.example.midterm_160420014.model.Menus
-import com.squareup.picasso.Picasso
 
 class RestaurantListAdapter(val menuList:ArrayList<Menus>):RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder>(),
     MenuRestaurantItemLayout {

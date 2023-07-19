@@ -2,7 +2,6 @@ package com.example.midterm_160420014.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +20,14 @@ class HistoryFragment : Fragment() {
     private val historyAdapter=HistoryListAdapter(arrayListOf())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadAllData()
+        val recView = view.findViewById<RecyclerView>(R.id.recView)
+        recView.layoutManager= LinearLayoutManager(context)
+        recView.adapter=historyAdapter
+        observe()
+    }
+
+    private fun loadAllData(){
         val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
         historyVM = ViewModelProvider(this)[ListHistoryViewModel::class.java]
         menuVM = ViewModelProvider(this)[ListMenuViewModel::class.java]
@@ -28,11 +35,10 @@ class HistoryFragment : Fragment() {
             menuVM.refreshAll()
             historyVM.refreshData(it.toInt())
         }
-
-        val recView = view.findViewById<RecyclerView>(R.id.recView)
-        recView.layoutManager= LinearLayoutManager(context)
-        recView.adapter=historyAdapter
-        observe()
+    }
+    override fun onResume() {
+        super.onResume()
+        loadAllData()
     }
     private fun observe(){
         historyVM.historyList.observe(viewLifecycleOwner, Observer {

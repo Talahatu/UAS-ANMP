@@ -1,10 +1,8 @@
 package com.example.midterm_160420014.viewModel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.android.volley.RequestQueue
 import com.example.midterm_160420014.model.Review
 import com.example.midterm_160420014.util.buildDB
 import kotlinx.coroutines.CoroutineScope

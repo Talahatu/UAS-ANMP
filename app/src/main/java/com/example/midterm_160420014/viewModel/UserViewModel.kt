@@ -1,16 +1,12 @@
 package com.example.midterm_160420014.viewModel
 
 import android.app.Application
-import android.util.Log
-import android.widget.EditText
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
-import com.android.volley.RequestQueue
 import com.example.midterm_160420014.model.KulinerDatabase
 import com.example.midterm_160420014.model.Users
 import com.example.midterm_160420014.util.buildDB
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -30,6 +26,15 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
             val db= buildDB(getApplication())
             val users = db.userDao().selectAll()
             allUserData.postValue(users as ArrayList<Users>)
+        }
+    }
+
+    fun deactivateAccount(user:Users){
+        launch {
+            val db = buildDB(getApplication())
+            db.userDao().deactivateAccount(user)
+            db.historyDao().deleteRelatedHistories(user.uuid)
+            db.reviewDao().deleteRelatedReview(user.uuid)
         }
     }
 
@@ -86,7 +91,7 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
     fun register(regisname:String,regisemail:String,regispassword:String){
         launch {
             val db= buildDB(getApplication())
-            val status=db.userDao().insert(Users(regisname,regisemail,regispassword,0,""))
+            db.userDao().insert(Users(regisname,regisemail,regispassword,0,""))
         }
     }
 }

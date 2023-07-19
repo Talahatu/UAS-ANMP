@@ -1,10 +1,8 @@
 package com.example.midterm_160420014.view
 
-import android.util.Log
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midterm_160420014.model.Review

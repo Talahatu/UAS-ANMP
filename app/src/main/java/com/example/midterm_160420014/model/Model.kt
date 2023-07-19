@@ -3,7 +3,6 @@ package com.example.midterm_160420014.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 
 
 

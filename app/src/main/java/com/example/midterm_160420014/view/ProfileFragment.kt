@@ -1,29 +1,25 @@
 package com.example.midterm_160420014.view
 
+
+import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
+import android.content.DialogInterface
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ObservableField
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavAction
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.databinding.FragmentProfileBinding
+import com.example.midterm_160420014.model.Users
 import com.example.midterm_160420014.viewModel.UserViewModel
 import com.google.android.material.textfield.TextInputEditText
 class ProfileFragment : Fragment(), ProfileOnClickListener,LogoutListener,TopUpListener {
@@ -68,12 +64,30 @@ class ProfileFragment : Fragment(), ProfileOnClickListener,LogoutListener,TopUpL
         Navigation.findNavController(v).navigate(action)
     }
 
+    override fun onDeactivateClick(v: View,user: Users) {
+        val builder = AlertDialog.Builder(context)
+        val dialog = builder.setTitle("Warning!!!")
+            .setMessage("Are you sure you want to deactivate your account?")
+            .setPositiveButton("DEACTIVATE") { dialog, _ ->
+            userVM.deactivateAccount(user)
+            onClickLogout(v)
+            dialog.dismiss()
+        }
+            .setNegativeButton("NO") { dialog, _ -> dialog.dismiss()}
+            .show()
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(Color.RED)
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE)
+    }
+
     override fun onClickTopup(v: View) {
         val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
         val nominal = view?.findViewById<TextInputEditText>(R.id.editTextSaldo)
         if (nominal?.text.toString() != "" && nominal?.text.toString().toInt()>0) {
             userVM.updateSaldo(nominal?.text.toString().toInt(),sharedPref.getString("uuid","")!!.toInt())
             checkStatus(nominal!!)
+        }
+        else{
+            Toast.makeText(context,"Nominal must be a number and greater than 0!!",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -82,7 +96,6 @@ class ProfileFragment : Fragment(), ProfileOnClickListener,LogoutListener,TopUpL
         val editor:SharedPreferences.Editor=sharedPref.edit()
         editor.clear()
         editor.apply()
-        userVM.clearData()
         findNavController().popBackStack(findNavController().graph.startDestinationId,true)
         val navController = Navigation.findNavController(requireActivity(),R.id.fragment_host)
         navController.popBackStack(navController.graph.startDestinationId,false)

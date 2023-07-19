@@ -12,4 +12,7 @@ interface HistoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg history:History)
+
+    @Query("DELETE FROM histories WHERE user_id=:uuid")
+    fun deleteRelatedHistories(uuid:Int)
 }
