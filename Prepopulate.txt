@@ -26,11 +26,11 @@ VALUES( "Warung Pak Kris", "Kantin PF Stan 1", "089098987678")
 
 
 ## History
-INSERT INTO histories(quantity, subtotal, user_id, menu_id, date)
-VALUES (4, 80000, 1, 1, "2023-02-07")
-,(3, 60000, 1, 2, "2023-02-07")
-,(6, 180000, 1, 4, "2023-02-07")
-,(2, 50000, 1, 8, "2023-02-07");
+INSERT INTO histories(quantity, subtotal, user_id, menu_id, date,alamat_tujuan)
+VALUES (4, 80000, 1, 1, "2023-02-07","Jalan Rungkut")
+,(3, 60000, 1, 2, "2023-02-07","Jalan Rungkut")
+,(6, 180000, 1, 4, "2023-02-07","Jalan Rungkut")
+,(2, 50000, 1, 8, "2023-02-07","Jalan Rungkut");
 
 ## Review
 INSERT INTO reviews(resto_id,menu_id,user_id,comment)
