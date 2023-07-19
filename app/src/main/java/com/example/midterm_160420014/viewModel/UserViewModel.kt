@@ -29,6 +29,15 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
         }
     }
 
+    fun deactivateAccount(user:Users){
+        launch {
+            val db = buildDB(getApplication())
+            db.userDao().deactivateAccount(user)
+            db.historyDao().deleteRelatedHistories(user.uuid)
+            db.reviewDao().deleteRelatedReview(user.uuid)
+        }
+    }
+
     fun updateSaldo(nominal:Int,uuid:Int){
         launch {
             val db = buildDB(getApplication())

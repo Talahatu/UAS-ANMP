@@ -9,6 +9,8 @@ import com.squareup.picasso.Picasso
 
 interface ProfileOnClickListener{
     fun onProfileClick(v:View)
+
+    fun onDeactivateClick(v:View,user:Users)
 }
 interface EditProfileListener{
     fun onEditProfileClick(v:View, user:Users)
@@ -41,6 +43,7 @@ interface ReviewListener{
 interface AddReviewListener{
     fun onAddReviewClick(v: View)
 }
+
 @BindingAdapter("imageUrl")
 fun loadImg(view: ImageView, url: String?) {
     if(url!=null){

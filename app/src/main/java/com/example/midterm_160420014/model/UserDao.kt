@@ -1,9 +1,6 @@
 package com.example.midterm_160420014.model
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface UserDao {
@@ -28,4 +25,6 @@ interface UserDao {
     @Query("UPDATE users SET name=:name, email=:email, password=:password, alamat=:alamat WHERE uuid=:uuid")
     fun updateProfile(name:String,email:String,password:String,alamat:String,uuid:Int):Int
 
+    @Delete
+    fun deactivateAccount(user:Users)
 }

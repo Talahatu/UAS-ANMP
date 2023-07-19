@@ -10,4 +10,7 @@ interface ReviewDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertReview(vararg review: Review)
+
+    @Query("DELETE FROM reviews WHERE user_id=:uuid")
+    fun deleteRelatedReview(uuid:Int)
 }

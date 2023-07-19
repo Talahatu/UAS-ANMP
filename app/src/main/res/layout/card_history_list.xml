@@ -19,7 +19,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/historyCard"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
@@ -34,6 +34,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtAlamatHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:text="@{history.alamat}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtMenuName" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -53,7 +63,7 @@
                 android:layout_marginTop="4dp"
                 android:text="pcs"
                 app:layout_constraintStart_toEndOf="@+id/txtQuantity"
-                app:layout_constraintTop_toBottomOf="@+id/txtMenuName" />
+                app:layout_constraintTop_toBottomOf="@+id/txtAlamatHistory" />
 
             <TextView
                 android:id="@+id/txtMenuName"
@@ -68,13 +78,13 @@
 
             <TextView
                 android:id="@+id/txtQuantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="21dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:text="@{String.valueOf(history.qty)}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtMenuName" />
+                app:layout_constraintTop_toBottomOf="@+id/txtAlamatHistory" />
 
             <TextView
                 android:id="@+id/txtSubtotal"
