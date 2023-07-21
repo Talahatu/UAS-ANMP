@@ -1,5 +1,6 @@
 package com.example.midterm_160420014.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -26,7 +27,7 @@ class HistoryListAdapter(private var historyList:ArrayList<History>): RecyclerVi
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
             menuDatas.forEach {menu->
                 if(menu.uuid==historyList[position].menu_id){
-                    holder.v.menu = menuDatas[position]
+                    holder.v.menu = menu
                     return@forEach
                 }
             }

@@ -2,6 +2,7 @@ package com.example.midterm_160420014.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -61,6 +62,11 @@ class CheckoutFragment : Fragment(),CheckoutListener {
     }
 
     override fun onClickCheckout(v: View,user: Users) {
+        if(user.saldo!! <historyVM.subtotal.value!!.toInt()){
+            Toast.makeText(context,"Saldo tidak mencukupi!!",Toast.LENGTH_SHORT).show()
+            return
+        }
+        Log.d("MENU: ",menuVM.menuList.value!!.uuid.toString())
         val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
         val id = sharedPref.getString("uuid","")!!.toInt()
         historyVM.checkoutOrder(id,menuVM.menuList.value!!.uuid,historyVM.qty.value!!,user.alamat!!,historyVM.subtotal.value!!)
