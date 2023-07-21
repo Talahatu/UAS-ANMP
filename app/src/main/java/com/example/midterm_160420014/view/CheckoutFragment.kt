@@ -13,12 +13,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.example.midterm_160420014.R
 import com.example.midterm_160420014.databinding.FragmentCheckoutBinding
 import com.example.midterm_160420014.model.Users
+import com.example.midterm_160420014.util.CheckoutWorker
+import com.example.midterm_160420014.util.NotificationHelper
 import com.example.midterm_160420014.viewModel.ListHistoryViewModel
 import com.example.midterm_160420014.viewModel.RestoDetailViewModel
 import com.example.midterm_160420014.viewModel.UserViewModel
+import java.util.concurrent.TimeUnit
 
 class CheckoutFragment : Fragment(),CheckoutListener {
     lateinit var menuVM: RestoDetailViewModel
@@ -70,6 +76,12 @@ class CheckoutFragment : Fragment(),CheckoutListener {
         val sharedPref = requireActivity().getSharedPreferences("UserLogin", Context.MODE_PRIVATE)
         val id = sharedPref.getString("uuid","")!!.toInt()
         historyVM.checkoutOrder(id,menuVM.menuList.value!!.uuid,historyVM.qty.value!!,user.alamat!!,historyVM.subtotal.value!!)
+
+//        NotificationHelper(v.context).createNotification("Checkout create","A new checkout successfully created!!")
+        val workReq = OneTimeWorkRequestBuilder<CheckoutWorker>().setInitialDelay(1, TimeUnit.SECONDS).setInputData(
+            workDataOf("title" to "Checkout create", "message" to "A new checkout successfully created!!")
+        ).build()
+        WorkManager.getInstance(requireContext()).enqueue(workReq)
         findNavController().popBackStack()
         Toast.makeText(context,"Checkout Success!!",Toast.LENGTH_SHORT).show()
     }
